@@ -24,8 +24,8 @@ export function Home() {
       <motion.div 
         className="flex flex-row items-center justify-center space-x-7 mt-10 w-full"
       >
-        <button className="bg-white text-black w-[145px] h-[40px] text-md cursor-pointer hover:bg-gray-200 transition-colors duration-200 rounded-lg">Explore my work</button>
-        <button className="bg-white text-black w-[130px] h-[40px] text-md cursor-pointer hover:bg-gray-200 transition-colors duration-200 rounded-lg">Get in Touch</button>
+        <button className="bg-white text-black w-[120px] h-[40px] sm:w-[145px] sm:h-[40px] text-sm sm:text-md cursor-pointer hover:bg-gray-200 transition-colors duration-200 rounded-lg">Explore my work</button>
+        <button className="bg-white text-black w-[120px] h-[40px] sm:w-[130px] sm:h-[40px] text-sm sm:text-md cursor-pointer hover:bg-gray-200 transition-colors duration-200 rounded-lg">Get in Touch</button>
       </motion.div>
     </div>
     </BackgroundLines>
