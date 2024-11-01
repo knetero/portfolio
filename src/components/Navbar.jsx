@@ -50,7 +50,7 @@ export default function Navbar() {
   }
 
   return (
-    <header className="fixed top-0 z-50 w-full flex items-center justify-center bg-black text-white">
+    <header className="fixed top-0 z-50 w-full flex items-center justify-center bg-black text-white mt-2">
       <div className="flex flex-row h-16 items-center justify-between w-full px-4 md:px-6 max-w-[2000px]">
         <Link href="/" className="flex items-center space-x-2">
         <Image src="./Images/Logo.svg" alt="Logo" width={40} height={40} />
@@ -58,6 +58,13 @@ export default function Navbar() {
         <nav className="hidden md:flex space-x-4">
           <NavigationMenu>
             <NavigationMenuList>
+              <NavigationMenuItem>
+                <Link href="/" legacyBehavior passHref>
+                  <NavigationMenuLink className="group inline-flex h-9 w-max items-center justify-center text-white  transition-colors duration-200 ">
+                    Home
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger>About</NavigationMenuTrigger>
                 <NavigationMenuContent>
