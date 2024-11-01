@@ -49,11 +49,16 @@ export default function Navbar() {
     }),
   }
 
+  const buttonVariants = {
+    tap: { scale: 0.95 },
+    hover: { scale: 1.05 },
+  }
+
   return (
     <header className="fixed top-0 z-50 w-full flex items-center justify-center bg-black text-white mt-2">
       <div className="flex flex-row h-16 items-center justify-between w-full px-4 md:px-6 max-w-[2000px]">
         <Link href="/" className="flex items-center space-x-2">
-        <Image src="./Images/Logo.svg" alt="Logo" width={40} height={40} />
+          <Image src="/Images/Logo.svg" alt="Logo" width={40} height={40} />
         </Link>
         <nav className="hidden md:flex space-x-4">
           <NavigationMenu>
@@ -114,13 +119,38 @@ export default function Navbar() {
             Contact Me
           </Button>
         </div>
-        <button
+        <motion.button
           className="md:hidden text-white focus:outline-none"
           onClick={toggleMenu}
           aria-label="Toggle menu"
+          variants={buttonVariants}
+          whileTap="tap"
+          whileHover="hover"
         >
-          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+          <AnimatePresence mode="wait">
+            {isOpen ? (
+              <motion.div
+                key="close"
+                initial={{ rotate: -180, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 180, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <X className="h-6 w-6" />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="menu"
+                initial={{ rotate: 180, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: -180, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Menu className="h-6 w-6" />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.button>
       </div>
       <AnimatePresence>
         {isOpen && (
@@ -129,7 +159,7 @@ export default function Navbar() {
             animate="open"
             exit="closed"
             variants={menuVariants}
-            className="fixed inset-0 z-50 bg-black bg-opacity-90 md:hidden"
+            className="fixed inset-0 z-50 bg-black  md:hidden"
           >
             <div className="flex flex-col h-full justify-center items-center relative">
               <motion.button
@@ -153,7 +183,7 @@ export default function Navbar() {
                   <motion.div key={link.href} custom={i} variants={linkVariants}>
                     <Link
                       href={link.href}
-                      className="text-2xl font-semibold text-white hover:text-gray-300 transition-colors duration-200"
+                      className="text-2xl font-semibold text-white hover:text-gray-300 transition-colors duration-200 font-light"
                       onClick={toggleMenu}
                     >
                       {link.label}

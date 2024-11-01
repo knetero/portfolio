@@ -11,20 +11,54 @@ export function Home() {
   return (
     <>
     <BackgroundLines className="flex items-center justify-center w-full flex-col px-4">
-      <h2
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ 
+          delay: 0.2, 
+          duration: 0.5,
+          ease: "easeInOut"
+        }}
         className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-2xl md:text-4xl lg:text-7xl font-sans py-2 md:py-10 relative z-20 font-bold tracking-tight">
         Crafting User <br /> Experiences for the Web.
-      </h2>
-      <p
+      </motion.h2>
+      
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ 
+          delay: 0.4,
+          duration: 0.5,
+          ease: "easeInOut"
+        }}
         className="max-w-xl mx-auto text-sm md:text-lg text-neutral-300 dark:text-neutral-400 text-center">
-       I architect immersive digital experiences,weaving cutting-edge code with elegant design to create interfaces that captivate and perform.
-      </p>
+        I architect immersive digital experiences, weaving cutting-edge code with elegant design to create interfaces that captivate and perform.
+      </motion.p>
       
     <div className="pointer-events-auto">
       <motion.div 
         className="flex flex-row items-center justify-center space-x-7 mt-10 w-full"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ 
+          delay: 0.6,
+          duration: 0.5,
+          ease: "easeInOut"
+        }}
       >
-        <button className="bg-white text-black w-[120px] h-[40px] sm:w-[145px] sm:h-[40px] text-sm sm:text-md cursor-pointer hover:bg-gray-200 transition-colors duration-200 rounded-lg">Explore my work</button>
+        <motion.button
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ 
+            delay: 0.7,
+            duration: 0.5,
+            ease: "easeInOut"
+          }}
+          className="bg-white text-black w-[120px] h-[40px] sm:w-[145px] sm:h-[40px] text-sm sm:text-md cursor-pointer hover:bg-gray-200 transition-colors duration-200 rounded-lg">Explore my work</motion.button>
         <button className="bg-white text-black w-[120px] h-[40px] sm:w-[130px] sm:h-[40px] text-sm sm:text-md cursor-pointer hover:bg-gray-200 transition-colors duration-200 rounded-lg">Get in Touch</button>
       </motion.div>
     </div>
