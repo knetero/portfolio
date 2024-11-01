@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 
 
 
-
 export function Home() {
   return (
     <>
@@ -63,6 +62,7 @@ export function Home() {
       </motion.div>
     </div>
     </BackgroundLines>
+    
     </>
   );
 }

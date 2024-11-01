@@ -61,13 +61,15 @@ export const ShootingStars = ({
       if (star) {
         setStar((prevStar) => {
           if (!prevStar) return null;
+          const isMobile = window.innerWidth <= 768;
+          const speedFactor = isMobile ? 2 : 1;
           const newX =
             prevStar.x +
-            prevStar.speed * Math.cos((prevStar.angle * Math.PI) / 180);
+            (prevStar.speed / speedFactor) * Math.cos((prevStar.angle * Math.PI) / 180);
           const newY =
             prevStar.y +
-            prevStar.speed * Math.sin((prevStar.angle * Math.PI) / 180);
-          const newDistance = prevStar.distance + prevStar.speed;
+            (prevStar.speed / speedFactor) * Math.sin((prevStar.angle * Math.PI) / 180);
+          const newDistance = prevStar.distance + (prevStar.speed / speedFactor);
           const newScale = 1 + newDistance / 100;
           if (
             newX < -20 ||
