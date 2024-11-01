@@ -6,7 +6,7 @@ import React from "react";
 export const BackgroundLines = ({
   children,
   className,
-  svgOptions
+  // svgOptions
 }) => {
   return (
     (<div

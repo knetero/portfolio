@@ -2,7 +2,6 @@
 
 import React from "react";
 import { BackgroundLines } from "@/components/ui/background-lines";
-import { Button } from "./ui/button";
 import { motion } from "framer-motion";
 
 
