@@ -1,22 +1,15 @@
 import Home from "@/components/Home";
-import { ShootingStars } from "@/components/ui/shooting-stars";
-import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { Projects } from "@/components/Projects";
-
 
 export default function HomePage() {
   return (
-    <>
-      <div className="w-full h-screen">
-      <Home /> 
-      {/* <ShootingStars className="your-class-name" /> */}
-      <div className="w-full h-[90%] flex items-center justify-center">
-        {/* Render the projects component */}
+    <div className="flex flex-col min-h-screen">
+      <section className="flex-grow">
+        <Home />
+      </section>
+      <section className="w-full py-16 md:py-24">
         <Projects />
-      </div>
-
-      </div>
-
-  </>
+      </section>
+    </div>
   );
 }
