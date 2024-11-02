@@ -51,7 +51,9 @@ export default function HomePage() {
         variants={sectionVariants}
         style={{ opacity, scale, y }}
       >
-        <Home />
+        <section id="home">
+          <Home/>
+        </section>
       </motion.section>
       <motion.section
         className="w-full py-16 md:py-24 relative"
@@ -60,6 +62,7 @@ export default function HomePage() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
+        id="projects"
       >
         <Projects />
       </motion.section>

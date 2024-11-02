@@ -16,6 +16,15 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 
+// Enhanced smooth scroll function
+const smoothScroll = (e, target) => {
+  e.preventDefault()
+  const element = document.getElementById(target)
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
+}
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false)
 
@@ -65,7 +74,10 @@ export default function Navbar() {
             <NavigationMenuList>
               <NavigationMenuItem>
                 <Link href="/" legacyBehavior passHref>
-                  <NavigationMenuLink className="group inline-flex h-9 w-max items-center justify-center text-white  transition-colors duration-200 ">
+                  <NavigationMenuLink 
+                    className="group inline-flex h-9 w-max items-center justify-center text-white transition-colors duration-200"
+                    onClick={(e) => smoothScroll(e, "home")}
+                  >
                     Home
                   </NavigationMenuLink>
                 </Link>
@@ -78,6 +90,7 @@ export default function Navbar() {
                       <Link
                         href="/about"
                         className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-background p-4 hover:bg-accent"
+                        onClick={(e) => smoothScroll(e, "about")}
                       >
                          <div className="text-sm font-medium leading-none group-hover:underline">Experience</div>
                          <div className="line-clamp-2 text-sm leading-snug text-muted-foreground">
@@ -87,6 +100,7 @@ export default function Navbar() {
                       <Link
                         href="/skills"
                         className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-background p-4 hover:bg-accent"
+                        onClick={(e) => smoothScroll(e, "skills")}
                       >
                         <div className="text-sm font-medium leading-none group-hover:underline">Skills</div>
                         <div className="line-clamp-2 text-sm leading-snug text-muted-foreground">
@@ -98,15 +112,23 @@ export default function Navbar() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/projects" legacyBehavior passHref>
-                  <NavigationMenuLink className="group inline-flex h-9 w-max items-center justify-center text-gray-300 hover:text-white transition-colors duration-200">
-                    Projects
-                  </NavigationMenuLink>
-                </Link>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link href="#projects" legacyBehavior passHref>
+                    <NavigationMenuLink 
+                      className="group inline-flex h-9 w-max items-center justify-center text-gray-300 hover:text-white transition-colors duration-200"
+                      onClick={(e) => smoothScroll(e, "projects")}
+                    >
+                      Projects
+                    </NavigationMenuLink>
+                  </Link>
+                </motion.div>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/blog" legacyBehavior passHref>
-                  <NavigationMenuLink className="group inline-flex h-9 w-max items-center justify-center text-gray-300 hover:text-white transition-colors duration-200">
+                  <NavigationMenuLink 
+                    className="group inline-flex h-9 w-max items-center justify-center text-gray-300 hover:text-white transition-colors duration-200"
+                    onClick={(e) => smoothScroll(e, "blog")}
+                  >
                     Blog
                   </NavigationMenuLink>
                 </Link>
@@ -115,7 +137,10 @@ export default function Navbar() {
           </NavigationMenu>
         </nav>
         <div className="hidden md:block">
-          <Button className="bg-white text-black hover:bg-gray-200 transition-colors duration-200">
+          <Button 
+            className="bg-white text-black hover:bg-gray-200 transition-colors duration-200"
+            onClick={(e) => smoothScroll(e, "contact")}
+          >
             Contact Me
           </Button>
         </div>
@@ -159,7 +184,7 @@ export default function Navbar() {
             animate="open"
             exit="closed"
             variants={menuVariants}
-            className="fixed inset-0 z-50 bg-black  md:hidden"
+            className="fixed inset-0 z-50 bg-black md:hidden"
           >
             <div className="flex flex-col h-full justify-center items-center relative">
               <motion.button
@@ -175,16 +200,19 @@ export default function Navbar() {
               </motion.button>
               <nav className="flex flex-col space-y-6 text-center">
                 {[
-                  { href: "/", label: "Home" },
-                  { href: "/about", label: "About" },
-                  { href: "/projects", label: "Projects" },
-                  { href: "/blog", label: "Blog" },
+                  { href: "/", label: "Home", id: "home" },
+                  { href: "/about", label: "About", id: "about" },
+                  { href: "/projects", label: "Projects", id: "projects" },
+                  { href: "/blog", label: "Blog", id: "blog" },
                 ].map((link, i) => (
                   <motion.div key={link.href} custom={i} variants={linkVariants}>
                     <Link
                       href={link.href}
                       className="text-xl text-white hover:text-gray-300 transition-colors duration-200 font-light"
-                      onClick={toggleMenu}
+                      onClick={(e) => {
+                        smoothScroll(e, link.id)
+                        toggleMenu()
+                      }}
                     >
                       {link.label}
                     </Link>
@@ -198,7 +226,10 @@ export default function Navbar() {
               >
                 <Button
                   className="bg-white text-black hover:bg-gray-200 transition-colors duration-200"
-                  onClick={toggleMenu}
+                  onClick={(e) => {
+                    smoothScroll(e, "contact")
+                    toggleMenu()
+                  }}
                 >
                   Contact Me
                 </Button>
