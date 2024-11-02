@@ -12,7 +12,16 @@ import {
 
 export function Projects() {
   return (
-    (<BentoGrid className="max-w-4xl mx-auto">
+    <div className="flex flex-col items-center justify-center gap-4 sm:gap-8 w-auto">
+      <h2
+          className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans py-4 md:py-6 relative z-20 font-bold tracking-tight"
+        >
+          Featured Projects
+        </h2>
+        <p className="bg-clip-text text-transparent text-center w-[95%] bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-lg sm:text-2xl tracking-tight">
+          Explore a curated selection of projects that showcase the power of creativity and innovation.
+        </p>
+    <BentoGrid className="max-w-4xl mx-auto">
       {items.map((item, i) => (
         <BentoGridItem
           key={i}
@@ -21,8 +30,9 @@ export function Projects() {
           header={item.header}
           icon={item.icon}
           className={i === 3 || i === 6 ? "md:col-span-2" : ""} />
-      ))}
-    </BentoGrid>)
+        ))}
+    </BentoGrid>
+        </div>
   );
 }
 const Skeleton = () => (

@@ -1,10 +1,19 @@
 'use client';
-
 import React from "react";
 import { BackgroundLines } from "@/components/ui/background-lines";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { usePathname } from 'next/navigation'
 
 export function Home() {
+  const pathname = usePathname()
+
+  useEffect(() => {
+    // Scroll to top on component mount and route change
+    window.scrollTo(0, 0)
+  }, [pathname])
+
+
   return (
     <BackgroundLines className="flex items-center justify-center w-full min-h-screen p-4 md:p-8">
       <div className="max-w-4xl mx-auto text-center">
@@ -68,5 +77,3 @@ export function Home() {
     </BackgroundLines>
   );
 }
-
-export default Home;
