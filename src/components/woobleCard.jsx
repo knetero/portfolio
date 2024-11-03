@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import React from "react";
 import { WobbleCard } from "./ui/wobble-card";
 import { Button } from "./ui/button";
