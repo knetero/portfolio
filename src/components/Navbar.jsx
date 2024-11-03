@@ -83,36 +83,26 @@ export default function Navbar() {
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>About</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div className="grid gap-3 p-6 w-[400px] md:w-[500px] lg:w-[600px]">
-                    <div className="grid grid-cols-2 gap-4">
-                      <Link
-                        href="/about"
-                        className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-background p-4 hover:bg-accent"
-                        onClick={(e) => smoothScroll(e, "about")}
-                      >
-                         <div className="text-sm font-medium leading-none group-hover:underline">Experience</div>
-                         <div className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          View my professional journey and expertise
-                        </div>
-                      </Link>
-                      <Link
-                        href="/skills"
-                        className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-background p-4 hover:bg-accent"
-                        onClick={(e) => smoothScroll(e, "skills")}
-                      >
-                        <div className="text-sm font-medium leading-none group-hover:underline">Skills</div>
-                        <div className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Explore my technical skills and competencies
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-                </NavigationMenuContent>
+                <Link href="/about" legacyBehavior passHref>
+                  <NavigationMenuLink
+                  className="group inline-flex h-9 w-max items-center justify-center text-gray-300 hover:text-white transition-colors duration-200"
+                  onClick={(e) => smoothScroll(e, "about")}
+                  >
+                    About
+                  </NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link href="/skills" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className="group inline-flex h-9 w-max items-center justify-center text-gray-300 hover:text-white transition-colors duration-200"
+                    onClick={(e) => smoothScroll(e, "skills")}
+                  >
+                    Skills
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
                   <Link href="#projects" legacyBehavior passHref>
                     <NavigationMenuLink 
                       className="group inline-flex h-9 w-max items-center justify-center text-gray-300 hover:text-white transition-colors duration-200"
@@ -121,15 +111,14 @@ export default function Navbar() {
                       Projects
                     </NavigationMenuLink>
                   </Link>
-                </motion.div>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/blog" legacyBehavior passHref>
+                <Link href="/resume" legacyBehavior passHref>
                   <NavigationMenuLink 
                     className="group inline-flex h-9 w-max items-center justify-center text-gray-300 hover:text-white transition-colors duration-200"
-                    onClick={(e) => smoothScroll(e, "blog")}
+                    onClick={(e) => smoothScroll(e, "resume")}
                   >
-                    Blog
+                    Resume
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>

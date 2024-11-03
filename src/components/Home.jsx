@@ -9,8 +9,9 @@ export function Home() {
   const pathname = usePathname()
 
   useEffect(() => {
-    // Scroll to top on component mount and route change
-    window.scrollTo(0, 0)
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+    }
   }, [pathname])
 
 

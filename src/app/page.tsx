@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react'
 import { Home } from "@/components/Home"
 import { Projects } from "@/components/Projects"
 import { motion, useScroll, useTransform } from "framer-motion"
+import About from "@/components/about"
+import { WobbleCardDemo } from "@/components/woobleCard"
 
 export default function HomePage() {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -65,6 +67,28 @@ export default function HomePage() {
         id="projects"
       >
         <Projects />
+        <motion.section
+        className="w-full py-16 md:py-24 relative"
+        variants={sectionVariants}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        id="about"
+        >
+          <About />
+        </motion.section>
+        <motion.section
+        className="w-full py-16 md:py-24 relative"
+        variants={sectionVariants}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        id="contact"
+        >
+          <WobbleCardDemo />
+        </motion.section>
       </motion.section>
     </motion.div>
   )
