@@ -19,7 +19,14 @@ const smoothScroll = (e, target) => {
   e.preventDefault()
   const element = document.getElementById(target)
   if (element) {
-    element.scrollIntoView({ behavior: "smooth", block: "start" })
+    const headerOffset = 64 // Adjust this value based on your header height
+    const elementPosition = element.getBoundingClientRect().top
+    const offsetPosition = elementPosition + window.scrollY - headerOffset
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth"
+    })
   }
 }
 
@@ -62,7 +69,7 @@ export default function Navbar() {
   }
 
   return (
-    <header className="fixed top-0 z-50 w-full flex items-center justify-center bg-black   sm:bg-transparent text-white pt-4">
+    <header className="fixed top-0 z-50 w-full flex items-center justify-center bg-black sm:bg-transparent text-white pt-4">
       <div className="flex flex-row h-16 items-center justify-between w-full px-4 md:px-6 max-w-[2000px]">
         <Link href="/" className="flex items-center space-x-2">
           <Image src="/Images/Logo.svg" alt="Logo" width={40} height={40} />
@@ -70,56 +77,24 @@ export default function Navbar() {
         <nav className="hidden md:flex flex flex-col items-center h-16 w-[500px] justify-center space-x-4 rounded-full bg-white/30 backdrop-blur-lg  dark:border-neutral-800">
           <NavigationMenu>
             <NavigationMenuList>
-              <NavigationMenuItem>
-                <Link href="/" legacyBehavior passHref>
-                  <NavigationMenuLink 
-                    className="group inline-flex h-9 w-max items-center justify-center text-white transition-colors duration-200"
-                    onClick={(e) => smoothScroll(e, "home")}
-                  >
-                    Home
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/about" legacyBehavior passHref>
-                  <NavigationMenuLink
-                  className="group inline-flex h-9 w-max items-center justify-center text-gray-300 hover:text-white transition-colors duration-200"
-                  onClick={(e) => smoothScroll(e, "about")}
-                  >
-                    About
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/skills" legacyBehavior passHref>
-                  <NavigationMenuLink
-                    className="group inline-flex h-9 w-max items-center justify-center text-gray-300 hover:text-white transition-colors duration-200"
-                    onClick={(e) => smoothScroll(e, "skills")}
-                  >
-                    Skills
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                  <Link href="#projects" legacyBehavior passHref>
+              {[
+                { href: "/", label: "Home", id: "home" },
+                { href: "/about", label: "About", id: "about" },
+                { href: "/skills", label: "Skills", id: "skills" },
+                { href: "#projects", label: "Projects", id: "projects" },
+                { href: "/resume", label: "Resume", id: "resume" },
+              ].map((link) => (
+                <NavigationMenuItem key={link.id}>
+                  <Link href={link.href} legacyBehavior passHref>
                     <NavigationMenuLink 
                       className="group inline-flex h-9 w-max items-center justify-center text-gray-300 hover:text-white transition-colors duration-200"
-                      onClick={(e) => smoothScroll(e, "projects")}
+                      onClick={(e) => smoothScroll(e, link.id)}
                     >
-                      Projects
+                      {link.label}
                     </NavigationMenuLink>
                   </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/resume" legacyBehavior passHref>
-                  <NavigationMenuLink 
-                    className="group inline-flex h-9 w-max items-center justify-center text-gray-300 hover:text-white transition-colors duration-200"
-                    onClick={(e) => smoothScroll(e, "resume")}
-                  >
-                    Resume
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
+                </NavigationMenuItem>
+              ))}
             </NavigationMenuList>
           </NavigationMenu>
         </nav>
@@ -189,7 +164,7 @@ export default function Navbar() {
                 {[
                   { href: "/", label: "Home", id: "home" },
                   { href: "/about", label: "About", id: "about" },
-                  { href: "/projects", label: "Projects", id: "projects" },
+                  { href: "#projects", label: "Projects", id: "projects" },
                 ].map((link, i) => (
                   <motion.div key={link.href} custom={i} variants={linkVariants}>
                     <Link

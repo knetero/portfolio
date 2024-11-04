@@ -8,88 +8,78 @@ import About from "@/components/about"
 import { WobbleCardDemo } from "@/components/woobleCard"
 
 export default function HomePage() {
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const { scrollYProgress } = useScroll()
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95])
-  const y = useTransform(scrollYProgress, [0, 0.5], [0, -50])
 
   useEffect(() => {
-    setIsLoaded(true)
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768) // Adjust this breakpoint as needed
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2,
-      },
-    },
+  const createScrollEffect = (start: number, end: number) => {
+    const mobileStart = start * 0.7
+    const mobileEnd = end * 0.7
+
+    return {
+      opacity: useTransform(
+        scrollYProgress, 
+        isMobile ? [mobileStart, Math.min(mobileStart + 0.1, mobileEnd)] : [start, Math.min(start + 0.1, end)],
+        [0.3, 1]
+      ),
+      translateY: useTransform(
+        scrollYProgress,
+        isMobile ? [mobileStart, Math.min(mobileStart + 0.1, mobileEnd)] : [start, Math.min(start + 0.1, end)],
+        ['10px', '0px']
+      ),
+    }
   }
 
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  }
+  const projectsEffect = createScrollEffect(0.1, 0.4)
+  const aboutEffect = createScrollEffect(0.3, 0.6)
+  const contactEffect = createScrollEffect(0.5, 0.8)
+
+  const sectionStyle = (effect: ReturnType<typeof createScrollEffect>) => ({
+    ...effect,
+    transition: 'opacity 0.5s ease-out, transform 0.5s ease-out'
+  })
 
   return (
-    <motion.div
-      className="flex flex-col min-h-screen"
-      initial="hidden"
-      animate={isLoaded ? "visible" : "hidden"}
-      variants={containerVariants}
-    >
-      <motion.section
+    <div className="flex flex-col min-h-screen">
+      <section
         className="flex-grow relative"
-        variants={sectionVariants}
-        style={{ opacity, scale, y }}
+        id="home"
       >
-        <section id="home">
-          <Home/>
-        </section>
-        </motion.section>
+        <Home />
+      </section>
+      
       <motion.section
-        className="w-full py-16 md:py-24 relative"
-        variants={sectionVariants}
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="w-full py-8 md:py-16 lg:py-24 relative"
+        style={sectionStyle(projectsEffect)}
         id="projects"
-        >
+      >
         <Projects />
-        <motion.section
-        className="w-full py-16 md:py-24 relative"
-        variants={sectionVariants}
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        id="about"
-        >
-          <About />
-        </motion.section>
-        <motion.section
-        className="w-full py-16 md:py-24 relative"
-        variants={sectionVariants}
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        id="contact"
-        >
-          <WobbleCardDemo />
-        </motion.section>
       </motion.section>
-    </motion.div>
+
+      <motion.section
+        className="w-full py-8 md:py-16 lg:py-24 relative"
+        style={sectionStyle(aboutEffect)}
+        id="about"
+      >
+        <About />
+      </motion.section>
+
+      <motion.section
+        className="w-full py-8 md:py-16 lg:py-24 relative"
+        style={sectionStyle(contactEffect)}
+        id="contact"
+      >
+        <WobbleCardDemo />
+      </motion.section>
+    </div>
   )
 }

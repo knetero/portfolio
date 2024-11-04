@@ -10,7 +10,14 @@ const smoothScroll = (e, target) => {
   e.preventDefault()
   const element = document.getElementById(target)
   if (element) {
-    element.scrollIntoView({ behavior: "smooth", block: "start" })
+    const headerOffset = 64 // Adjust this value based on your header height
+    const elementPosition = element.getBoundingClientRect().top
+    const offsetPosition = elementPosition + window.scrollY - headerOffset
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth"
+    })
   }
 }
 

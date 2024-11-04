@@ -9,10 +9,11 @@ import {
   IconSignature,
   IconTableColumn,
 } from "@tabler/icons-react";
+import Image from 'next/image';
 
 export function Projects() {
   return (
-    <div className="flex flex-col items-center justify-center gap-4 sm:gap-8 w-auto">
+    <div className="flex flex-col items-center justify-center gap-4 sm:gap-8 w-auto mx-auto">
       <h2
           className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans py-4 md:py-6 relative z-20 font-bold tracking-tight"
         >
@@ -43,7 +44,7 @@ const items = [
   {
     title: "The Dawn of Innovation",
     description: "Explore the birth of groundbreaking ideas and inventions.",
-    header: <Skeleton />,
+    header: <Image src="/Images/pingpong.png" alt="Innovation" width={500} height={300} />,
     icon: <IconClipboardCopy className="h-4 w-4 text-white" />,
   },
   {
@@ -59,7 +60,7 @@ const items = [
     icon: <IconSignature className="h-4 w-4 text-white" />,
   },
   {
-    title: "The Power of Communication",
+    title: "Ping Pong Game",
     description:
       "Understand the impact of effective communication in our lives.",
     header: <Skeleton />,
