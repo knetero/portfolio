@@ -3,16 +3,9 @@ import { FloatingDock } from "@/components/ui/floating-dock";
 import {
   IconBrandGithub,
   IconBrandX,
-  IconExchange,
-  IconHome,
-  IconNewSection,
-  IconTerminal2,
   IconBrandLinkedin,
   IconFile,
 } from "@tabler/icons-react";
-import Image from "next/image";
-import Link from "next/link";
-
 export function SocialMedia() {
   const links = [
     {

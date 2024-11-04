@@ -6,7 +6,6 @@ import { Projects } from "@/components/Projects"
 import { motion, useScroll, useTransform } from "framer-motion"
 import About from "@/components/about"
 import { WobbleCardDemo } from "@/components/woobleCard"
-import { SocialMedia } from "@/components/SocialMedia"
 
 export default function HomePage() {
   const [isLoaded, setIsLoaded] = useState(false)
