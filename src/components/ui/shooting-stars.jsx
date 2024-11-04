@@ -21,8 +21,8 @@ const getRandomStartPoint = () => {
 };
 export const ShootingStars = ({
   minSpeed = 10,
-  maxSpeed = 30,
-  minDelay = 1200,
+  maxSpeed = 10,
+  minDelay = 1400,
   maxDelay = 4200,
   starColor = "#9E00FF",
   trailColor = "#2EB9DF",

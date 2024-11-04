@@ -3,14 +3,17 @@ import React from "react";
 import { WobbleCard } from "./ui/wobble-card";
 import { Button } from "./ui/button";
 import { ArrowUpRight } from 'lucide-react';
+import { SocialMedia } from "@/components/SocialMedia"
+
+
 
 
 export function WobbleCardDemo() {
   return (
     (<div
-      className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-7xl mx-auto  w-full">
+      className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-7xl mx-auto w-full">
       <WobbleCard
-        containerClassName="col-span-1 lg:col-span-3 bg-neutral-900/50 min-h-[500px] lg:min-h-[600px] xl:min-h-[300px]">
+        containerClassName="col-span-1 lg:col-span-3 bg-neutral-900/50 min-h-[200px] lg:min-h-[600px] xl:min-h-[300px]">
         <div className="max-w-sm">
           <h2
             className="max-w-sm md:max-w-lg  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
@@ -27,6 +30,7 @@ export function WobbleCardDemo() {
             Contact Me
             <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
          </Button>
+         <SocialMedia />
       </WobbleCard>
     </div>)
   );

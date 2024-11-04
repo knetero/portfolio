@@ -6,8 +6,8 @@ import Link from "next/link"
 
 export default function About() {
   const technologies = [
-    { name: "React", id: 3 },
     { name: "NextJs", id: 6 },
+    { name: "React", id: 3 },
     { name: "JavaScript (ES6+)", id: 1 },
   ]
 
@@ -25,7 +25,7 @@ export default function About() {
               initial={{ x: -20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="bg-clip-text text-transparent bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-3xl md:text-6xl font-sans font-bold tracking-tight"
+              className="bg-clip-text text-transparent bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-bold tracking-tight"
             >
               About Me
             </motion.h2>
@@ -34,7 +34,7 @@ export default function About() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-200 dark:to-white space-y-4 text-neutral-300 dark:text-neutral-400 font-semibold"
+              className="bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-200 dark:to-white space-y-4 text-neutral-300 dark:text-neutral-400 font-light"
             >
               <p>
                 Hey! I'm Abdellah, a developer focused on building modern web experiences. 
@@ -44,7 +44,7 @@ export default function About() {
               </p>
               <p>
                 Recently, I developed{' '}
-                <Link href="#" className="text-white hover:underline">ft_transcendence</Link>,{' '}
+                <Link href="#" className="text-white hover:underline font-medium">ft_transcendence</Link>,{' '}
                 a real-time multiplayer ping pong platform built with Next.js and React. 
                 The project features live gameplay, social networking capabilities, and an 
                 integrated chat system, demonstrating my ability to create interactive, 
@@ -62,7 +62,7 @@ export default function About() {
               <h3 className="text-neutral-100 mb-3">Here are a few technologies I've been working with recently:</h3>
               <ul className="grid grid-cols-2 gap-2 text-sm">
                 {technologies.map((tech) => (
-                  <li key={tech.id} className="flex items-center space-x-2">
+                  <li key={tech.id} className="flex items-center space-x-2 font-bold">
                     <span className="text-white">▹</span>
                     <span>{tech.name}</span>
                   </li>

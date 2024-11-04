@@ -5,6 +5,15 @@ import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { usePathname } from 'next/navigation'
 
+
+const smoothScroll = (e, target) => {
+  e.preventDefault()
+  const element = document.getElementById(target)
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
+}
+
 export function Home() {
   const pathname = usePathname()
 
@@ -14,6 +23,7 @@ export function Home() {
     }
   }, [pathname])
 
+  
 
   return (
     <BackgroundLines className="flex items-center justify-center w-full min-h-screen p-4 md:p-8">
@@ -66,13 +76,11 @@ export function Home() {
               duration: 0.5,
               ease: "easeInOut"
             }}
-            className="bg-white text-black w-full sm:w-auto px-6 py-3 text-base font-medium cursor-pointer hover:bg-gray-200 transition-colors duration-200 rounded-lg"
+            className="bg-white text-black w-full sm:w-auto h-12 px-6 text-base font-medium cursor-pointer hover:bg-gray-200 transition-colors duration-200 rounded-lg"
+            onClick={(e) => smoothScroll(e, "projects")}
           >
             Explore my work
           </motion.button>
-          <button className="bg-white text-black w-full sm:w-auto px-6 py-3 text-base font-medium cursor-pointer hover:bg-gray-200 transition-colors duration-200 rounded-lg">
-            Get in Touch
-          </button>
         </motion.div>
       </div>
     </BackgroundLines>
