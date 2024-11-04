@@ -9,7 +9,6 @@ import {
   IconSignature,
   IconTableColumn,
 } from "@tabler/icons-react";
-import Image from 'next/image';
 
 export function Projects() {
   return (
@@ -44,7 +43,7 @@ const items = [
   {
     title: "The Dawn of Innovation",
     description: "Explore the birth of groundbreaking ideas and inventions.",
-    header: <Image src="/Images/pingpong.png" alt="Innovation" width={500} height={300} />,
+    header: <Skeleton />,
     icon: <IconClipboardCopy className="h-4 w-4 text-white" />,
   },
   {
