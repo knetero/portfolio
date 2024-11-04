@@ -4,6 +4,22 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 
+const smoothScroll = (e, target) => {
+  e.preventDefault()
+  const element = document.getElementById(target)
+  if (element) {
+    const headerOffset = 64 // Adjust this value based on your header height
+    const elementPosition = element.getBoundingClientRect().top
+    const offsetPosition = elementPosition + window.scrollY - headerOffset
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth"
+    })
+  }
+}
+
+
 export default function About() {
   const technologies = [
     { name: "NextJs", id: 6 },
@@ -44,7 +60,7 @@ export default function About() {
               </p>
               <p>
                 Recently, I developed{' '}
-                <Link href="#" className="text-white hover:underline font-medium">ft_transcendence</Link>,{' '}
+                <Link href="#projects"  onClick={(e) => smoothScroll(e, "projects")} className="text-white hover:underline font-medium">ft_transcendence</Link>,{' '}
                 a real-time multiplayer ping pong platform built with Next.js and React. 
                 The project features live gameplay, social networking capabilities, and an 
                 integrated chat system, demonstrating my ability to create interactive, 
