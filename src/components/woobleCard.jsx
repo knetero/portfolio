@@ -11,7 +11,7 @@ import { SocialMedia } from "@/components/SocialMedia"
 export function WobbleCardDemo() {
   return (
     (<div
-      className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-7xl mx-auto w-full">
+      className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-7xl mx-auto w-full ">
       <WobbleCard
         containerClassName="col-span-1 lg:col-span-3 bg-neutral-900/50 min-h-[200px] lg:min-h-[600px] xl:min-h-[300px]">
         <div className="max-w-sm">

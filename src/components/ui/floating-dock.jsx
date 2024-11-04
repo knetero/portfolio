@@ -36,6 +36,7 @@ const FloatingDockMobile = ({
             {items.map((item, idx) => (
               <motion.div
                 key={item.title}
+                className={cn(idx === 0 ? "ml-2" : "")}
                 initial={{ opacity: 0, x: -10 }}
                 animate={{
                   opacity: 1,
@@ -49,12 +50,13 @@ const FloatingDockMobile = ({
                   },
                 }}
                 transition={{ delay: (items.length - 1 - idx) * 0.05 }}>
-                <Link
+                <a
                   href={item.href}
                   key={item.title}
+                  target={item.target}
                   className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center">
                   <div className="h-4 w-4">{item.icon}</div>
-                </Link>
+                </a>
               </motion.div>
             ))}
           </motion.div>
@@ -79,11 +81,11 @@ const FloatingDockDesktop = ({
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "mx-auto hidden md:flex h-16 gap-4 items-end  rounded-2xl bg-gray-50 dark:bg-neutral-900 px-4 pb-3  bg-transparent",
+        "mx-auto hidden md:flex h-16 gap-4 items-end  rounded-2xl bg-gray-50 dark:bg-neutral-900 px-4 pb-3  bg-white/10",
         className
       )}>
       {items.map((item) => (
-        <IconContainer mouseX={mouseX} key={item.title} {...item} />
+        <IconContainer mouseX={mouseX} key={item.title} {...item} target={item.target} />
       ))}
     </motion.div>)
   );
@@ -94,6 +96,7 @@ function IconContainer({
   title,
   icon,
   href
+
 }) {
   let ref = useRef(null);
 
@@ -134,7 +137,7 @@ function IconContainer({
   const [hovered, setHovered] = useState(false);
 
   return (
-    (<Link href={href}>
+    (<Link href={href} target="_blank">
       <motion.div
         ref={ref}
         style={{ width, height }}

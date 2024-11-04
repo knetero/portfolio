@@ -62,12 +62,12 @@ export default function Navbar() {
   }
 
   return (
-    <header className="fixed top-0 z-50 w-full flex items-center justify-center bg-black text-white pt-2">
+    <header className="fixed top-0 z-50 w-full flex items-center justify-center bg-black   sm:bg-transparent text-white pt-4">
       <div className="flex flex-row h-16 items-center justify-between w-full px-4 md:px-6 max-w-[2000px]">
         <Link href="/" className="flex items-center space-x-2">
           <Image src="/Images/Logo.svg" alt="Logo" width={40} height={40} />
         </Link>
-        <nav className="hidden md:flex space-x-4">
+        <nav className="hidden md:flex flex flex-col items-center h-16 w-[500px] justify-center space-x-4 rounded-full bg-white/30 backdrop-blur-lg  dark:border-neutral-800">
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
@@ -190,7 +190,6 @@ export default function Navbar() {
                   { href: "/", label: "Home", id: "home" },
                   { href: "/about", label: "About", id: "about" },
                   { href: "/projects", label: "Projects", id: "projects" },
-                  { href: "/blog", label: "Blog", id: "blog" },
                 ].map((link, i) => (
                   <motion.div key={link.href} custom={i} variants={linkVariants}>
                     <Link
