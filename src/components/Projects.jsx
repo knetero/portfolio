@@ -9,7 +9,6 @@ import {
   IconSignature,
   IconTableColumn,
 } from "@tabler/icons-react";
-import Image from 'next/image';
 
 export function Projects() {
   return (
