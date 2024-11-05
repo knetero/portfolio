@@ -18,7 +18,7 @@ export default function LogoCarousel() {
     <section className="bg-black text-white pt-8 pb-4" id="skills">
       <div className="container mx-auto px-4">
         <h2 className="bg-clip-text pb-8 text-transparent bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-bold tracking-tight text-center">My Tech Stack</h2>
-        <p className="bg-clip-text pb-5 text-transparent bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-center pb-20 text-neutral-300 dark:text-neutral-400 font-light text-xl 
+        <p className="bg-clip-text pb-10 text-transparent bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-center pb-20 text-neutral-300 dark:text-neutral-400 font-light text-xl 
          sm:text-xl md:text-xl lg:text-2xl">
           Discover the tools and technologies <br/> I leverage to build outstanding digital experiences.
         </p>
