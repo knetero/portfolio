@@ -79,9 +79,9 @@ export default function Navbar() {
             <NavigationMenuList>
               {[
                 { href: "/", label: "Home", id: "home" },
+                { href: "#projects", label: "Projects", id: "projects" },
                 { href: "/about", label: "About", id: "about" },
                 { href: "/skills", label: "Skills", id: "skills" },
-                { href: "#projects", label: "Projects", id: "projects" },
                 { href: "/resume", label: "Resume", id: "resume" },
               ].map((link) => (
                 <NavigationMenuItem key={link.id}>

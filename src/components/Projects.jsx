@@ -9,6 +9,7 @@ import {
   IconSignature,
   IconTableColumn,
 } from "@tabler/icons-react";
+import Image from 'next/image';
 
 export function Projects() {
   return (
@@ -36,7 +37,7 @@ export function Projects() {
   );
 }
 const Skeleton = () => (
-  <div
+  <div 
     className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 "></div>
 );
 const items = [
@@ -62,7 +63,17 @@ const items = [
     title: "Ping Pong Game",
     description:
       "Understand the impact of effective communication in our lives.",
-    header: <Skeleton />,
+    header: (
+      <div className="flex justify-center bg-[#9FB3C0] h-full min-h-[7rem]">
+        <Image 
+          src="/Images/pong.jpeg" 
+          className="w-[80%] h-[98%] min-h-[6rem] " 
+          alt="pingpong" 
+          width={200} 
+          height={200} 
+        />
+      </div>
+    ),
     icon: <IconTableColumn className="h-4 w-4 text-white" />,
   },
   {
