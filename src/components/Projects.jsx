@@ -63,17 +63,7 @@ const items = [
     title: "Ping Pong Game",
     description:
       "Understand the impact of effective communication in our lives.",
-    header: (
-      <div className="flex justify-center bg-[#9FB3C0] h-full min-h-[7rem]">
-        <Image 
-          src="/Images/pong.jpeg" 
-          className="w-[80%] h-[98%] min-h-[6rem] " 
-          alt="pingpong" 
-          width={200} 
-          height={200} 
-        />
-      </div>
-    ),
+    header: <Skeleton />,
     icon: <IconTableColumn className="h-4 w-4 text-white" />,
   },
   {

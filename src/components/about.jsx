@@ -3,7 +3,6 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
-import LogoCarousel from "@/components/logoCarousel"
 
 const smoothScroll = (e, target) => {
   e.preventDefault()
@@ -112,9 +111,6 @@ export default function About() {
             <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-gradient-to-br from-neutral-700 to-neutral-800 rounded-full opacity-75 blur-xl" />
             <div className="absolute -top-4 -left-4 w-32 h-32 bg-gradient-to-br from-neutral-800 to-neutral-900 rounded-full opacity-75 blur-xl" />
           </motion.div>
-        </div>
-        <div className="mt-[140px] pt-20">
-          <LogoCarousel />
         </div>
       </motion.div>
     </section>

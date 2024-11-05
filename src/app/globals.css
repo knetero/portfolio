@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@layer utilities {
+  .animation-pause {
+    animation-play-state: paused;
+  }
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: black;

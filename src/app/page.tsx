@@ -6,6 +6,7 @@ import { Projects } from "@/components/Projects"
 import { motion, useScroll, useTransform } from "framer-motion"
 import About from "@/components/about"
 import { WobbleCardDemo } from "@/components/woobleCard"
+import LogoCarousel from "@/components/logoCarousel"
 
 export default function HomePage() {
   const [isMobile, setIsMobile] = useState(false)
@@ -71,6 +72,10 @@ export default function HomePage() {
         id="about"
       >
         <About />
+      </motion.section>
+      <motion.section>
+        <LogoCarousel />
+
       </motion.section>
 
       <motion.section
