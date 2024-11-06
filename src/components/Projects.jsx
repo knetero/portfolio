@@ -18,7 +18,7 @@ export function Projects() {
       <p className="bg-clip-text text-transparent text-center w-[95%] bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-lg sm:text-2xl tracking-tight">
         Explore a curated selection of projects <br className="bg-clip-text text-transparent bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white"/> That showcase the power of creativity and innovation.
       </p>
-      <BentoGrid className="max-w-5xl mx-auto">
+      <BentoGrid className="max-w-5xl sm:mx-auto mx-[20px]">
         {items.map((item, i) => (
           <BentoGridItem
             key={i}

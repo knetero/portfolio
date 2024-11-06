@@ -47,7 +47,7 @@ export function Home() {
           }}
           className="bg-clip-text text-transparent bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans py-4 md:py-6 relative z-20 font-bold tracking-tight"
         >
-          Crafting User <br className="hidden sm:inline" /> Experiences for the Web.
+          Crafting User <br className="hidden sm:inline " /> Experiences for the Web.
         </motion.h2>
         
         <motion.p
@@ -84,7 +84,7 @@ export function Home() {
               duration: 0.5,
               ease: "easeInOut"
             }}
-            className="bg-white text-black w-full sm:w-auto h-12 px-6 text-base font-medium cursor-pointer hover:bg-gray-200 transition-colors duration-200 rounded-lg"
+            className="bg-white text-black w-full sm:w-auto h-12 px-6 text-base font-medium cursor-pointer hover:bg-gray-200 transition-colors duration-200 rounded-lg shadow shadow-white/30 shadow-lg"
             onClick={(e) => smoothScroll(e, "projects")}
           >
             Explore my work
