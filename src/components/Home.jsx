@@ -59,7 +59,7 @@ export function Home() {
             duration: 0.5,
             ease: "easeInOut"
           }}
-          className="max-w-xl mx-auto text-base sm:text-lg text-neutral-300 dark:text-neutral-400 mt-4 md:mt-6"
+          className="max-w-xl mx-auto  text-base sm:text-lg text-neutral-300 dark:text-neutral-400 mt-4 md:mt-6"
         >
           I architect immersive digital experiences, weaving cutting-edge code with elegant design to create interfaces that captivate and perform.
         </motion.p>
