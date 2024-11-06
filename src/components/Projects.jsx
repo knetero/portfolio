@@ -34,9 +34,6 @@ export function Projects() {
   );
 }
 
-const Skeleton = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200"></div>
-);
 
 const ImageContainer = ({ src, alt }) => (
   <div className="w-full h-full grid place-items-center overflow-hidden rounded-xl bg-neutral-900">
