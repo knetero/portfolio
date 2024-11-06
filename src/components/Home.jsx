@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { usePathname } from 'next/navigation'
 
 
+
 const smoothScroll = (e, target) => {
   e.preventDefault()
   const element = document.getElementById(target)
@@ -33,7 +34,7 @@ export function Home() {
   
 
   return (
-    <BackgroundLines className="flex items-center justify-center w-full min-h-screen p-4 md:p-8">
+    <BackgroundLines className="flex flex-col items-center justify-center w-full min-h-screen p-4 md:p-8">
       <div className="max-w-4xl mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
