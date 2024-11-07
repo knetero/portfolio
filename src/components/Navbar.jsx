@@ -18,7 +18,7 @@ import {
 const smoothScroll = (e, target) => {
   e.preventDefault()
   if (target === "resume") {
-    window.open("https://Loading.com", "_blank")
+    window.open("/AbdellahResume.pdf", "_blank")
   } else {
     const element = document.getElementById(target)
     if (element) {
@@ -77,7 +77,7 @@ export default function Navbar() {
     { href: "#projects", label: "Projects", id: "projects" },
     { href: "/about", label: "About", id: "about" },
     { href: "/skills", label: "Skills", id: "skills" },
-    { href: "#resume", label: "Resume", id: "resume" },
+    { href: "/AbdellahResume.pdf", label: "Resume", id: "resume", rel: "noopener noreferrer" },
   ]
 
   return (
