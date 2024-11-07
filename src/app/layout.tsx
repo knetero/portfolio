@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-import {ShootingStars} from "@/components/ui/shooting-stars";
+import { ShootingStars } from "@/components/ui/shooting-stars";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,12 +28,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="custom-scrollbar">
       <body
         className={`${inter.className} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ShootingStars className="shooting-stars" />
-        <Navbar/>
+        <Navbar />
         <div className="pt-16">
           {children}
         </div>

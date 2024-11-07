@@ -165,6 +165,7 @@ export default function Navbar() {
                   { href: "/", label: "Home", id: "home" },
                   { href: "/about", label: "About", id: "about" },
                   { href: "#projects", label: "Projects", id: "projects" },
+                  { href: "#skills", label: "Skills", id: "skills" },
                 ].map((link, i) => (
                   <motion.div key={link.href} custom={i} variants={linkVariants}>
                     <Link
