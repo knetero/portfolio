@@ -9,7 +9,7 @@ import {
   IconSignature,
   IconTableColumn,
 } from "@tabler/icons-react"
-import { ArrowUpRight, X } from "lucide-react"
+import { ArrowUpRight} from "lucide-react"
 import Image from "next/image"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
