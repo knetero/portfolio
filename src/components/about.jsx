@@ -22,9 +22,10 @@ const smoothScroll = (e, target) => {
 
 export default function About() {
   const technologies = [
-    { name: "NextJs", id: 6 },
+    { name: "Next.js", id: 6 },
     { name: "React", id: 3 },
     { name: "JavaScript (ES6+)", id: 1 },
+    { name: "TailwindCSS", id: 2 },
   ]
 
   return (
