@@ -72,14 +72,14 @@ const ProjectModal = ({ item }) => {
       </DialogTrigger>
       <AnimatePresence>
         {isOpen && (
-          <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden bg-neutral-900 text-neutral-100 border border-neutral-800" forceMount>
+          <DialogContent className="max-w-full sm:max-w-[600px] h-[100%] sm:h-auto p-0 overflow-hidden bg-neutral-900 text-neutral-100 border border-neutral-800" forceMount>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.3 }}
             >
-              <DialogHeader className="p-6 pb-0">
+              <DialogHeader className="sm:p-7 p-20 pb-0">
                 <DialogTitle className="text-2xl font-bold text-white">
                   {item.title}
                 </DialogTitle>
@@ -109,7 +109,7 @@ const ProjectModal = ({ item }) => {
                   </ul>
                 </div>
               </div>
-              <div className="p-6 bg-neutral-800">
+              <div className="p-6 sm:bg-neutral-800">
                 <Button
                   onClick={() => setIsOpen(false)}
                   className="w-full bg-white text-neutral-900 hover:bg-neutral-200 font-semibold py-2 px-4 rounded-lg transition-all duration-300"
