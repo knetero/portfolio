@@ -64,7 +64,7 @@ export default function About() {
                 a real-time multiplayer ping pong platform built with Next.js and React. 
                 The project features live gameplay, social networking capabilities, and an 
                 integrated chat system, demonstrating my ability to create interactive, 
-                full-stack web applications. I'm currently focused on building accessible, 
+                frontend web applications. I'm currently focused on building accessible, 
                 engaging user experiences and exploring new ways to push the boundaries of 
                 web technology.
               </p>

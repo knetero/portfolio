@@ -1,13 +1,19 @@
-import React from "react";
-import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
+"use client"
+
+import React from "react"
+import { BentoGrid, BentoGridItem } from "./ui/bento-grid"
 import {
   IconBoxAlignTopLeft,
   IconClipboardCopy,
   IconFileBroken,
   IconSignature,
   IconTableColumn,
-} from "@tabler/icons-react";
-import Image from "next/image";
+} from "@tabler/icons-react"
+import { ArrowUpRight, X } from "lucide-react"
+import Image from "next/image"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { motion, AnimatePresence } from "framer-motion"
 
 export function Projects() {
   return (
@@ -22,7 +28,12 @@ export function Projects() {
         {items.map((item, i) => (
           <BentoGridItem
             key={i}
-            title={item.title}
+            title={
+              <div className="flex items-center gap-2">
+                {item.title}
+                <ProjectModal item={item} />
+              </div>
+            }
             description={item.description}
             header={item.header}
             icon={item.icon}
@@ -31,9 +42,8 @@ export function Projects() {
         ))}
       </BentoGrid>
     </div>
-  );
+  )
 }
-
 
 const ImageContainer = ({ src, alt }) => (
   <div className="w-full h-full grid place-items-center overflow-hidden rounded-xl bg-neutral-900">
@@ -47,7 +57,73 @@ const ImageContainer = ({ src, alt }) => (
       />
     </div>
   </div>
-);
+)
+
+const ProjectModal = ({ item }) => {
+  const [isOpen, setIsOpen] = React.useState(false)
+
+  return (
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogTrigger asChild>
+        <Button variant="ghost" size="icon" className="text-neutral-300  transition-colors">
+          <ArrowUpRight className="h-4 w-4" />
+          <span className="sr-only text-white">Learn more about {item.title}</span>
+        </Button>
+      </DialogTrigger>
+      <AnimatePresence>
+        {isOpen && (
+          <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden bg-neutral-900 text-neutral-100 border border-neutral-800" forceMount>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <DialogHeader className="p-6 pb-0">
+                <DialogTitle className="text-2xl font-bold text-white">
+                  {item.title}
+                </DialogTitle>
+                <DialogDescription className="text-neutral-400 mt-2">
+                  {item.description}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="p-6">
+                <div className="mb-6">
+                  <h4 className="text-lg font-semibold mb-2 text-white">Project Details:</h4>
+                  <p className="text-neutral-300">{item.details}</p>
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold mb-2 text-white">Technologies Used:</h4>
+                  <ul className="flex flex-wrap gap-2">
+                    {item.technologies.map((tech, index) => (
+                      <motion.li
+                        key={index}
+                        className="bg-neutral-800 rounded-full px-3 py-1 text-sm text-neutral-300"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.2, delay: index * 0.05 }}
+                      >
+                        {tech}
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div className="p-6 bg-neutral-800">
+                <Button
+                  onClick={() => setIsOpen(false)}
+                  className="w-full bg-white text-neutral-900 hover:bg-neutral-200 font-semibold py-2 px-4 rounded-lg transition-all duration-300"
+                >
+                  Close
+                </Button>
+              </div>
+            </motion.div>
+          </DialogContent>
+        )}
+      </AnimatePresence>
+    </Dialog>
+  )
+}
 
 const items = [
   {
@@ -55,29 +131,39 @@ const items = [
     description: "An implementation of Internet Relay Chat using C++.",
     header: <ImageContainer src="/Images/irc.png" alt="Internet Relay Chat" />,
     icon: <IconClipboardCopy className="h-4 w-4 text-white" />,
+    details: "This project is a fully functional Internet Relay Chat (IRC) server and client implementation. It allows multiple users to communicate in real-time through various channels, supporting private messaging and channel operations.",
+    technologies: ["C++", "Socket Programming", "Multi-threading", "Network Protocols"],
   },
   {
     title: "Minishell",
     description: "An implementation of Bash in C, providing a lightweight shell environment.",
     header: <ImageContainer src="/Images/minishell.png" alt="Minishell" />,
     icon: <IconFileBroken className="h-4 w-4 text-white" />,
+    details: "Minishell is a simplified version of a Unix shell, implemented entirely in C. It supports basic shell functionalities such as command execution, environment variable management, and built-in commands.",
+    technologies: ["C", "Process Management", "System Calls", "Parsing"],
   },
   {
     title: "Cub3d Game",
     description: "An engaging 3D game showcasing innovative design and gameplay.",
     header: <ImageContainer src="/Images/cub3d.png" alt="Cub3d Game" />,
     icon: <IconSignature className="h-4 w-4 text-white" />,
+    details: "Cub3d is a 3D game engine built from scratch using raycasting techniques. It renders a 3D-like environment from a 2D map, similar to classic games like Wolfenstein 3D.",
+    technologies: ["C", "Raycasting", "Computer Graphics", "Game Development"],
   },
   {
     title: "Online Pong Game",
     description: "A website for playing Ping Pong online, featuring chat and friends functionality.",
     header: <ImageContainer src="/Images/pong2.png" alt="Ping Pong Game" />,
     icon: <IconTableColumn className="h-4 w-4 text-white" />,
+    details: "This project is a full-stack web application that allows users to play Pong online in real-time. It features user authentication, matchmaking, live gameplay, and a chat system for players to communicate.",
+    technologies: ["Next.Js", "React.Js", "Javascipt" , "WebSocket", "HTML5 Canvas", "Tailwind CSS", "Database Management"],
   },
   {
     title: "Inception",
     description: "A project exploring the fundamentals of containerization.",
     header: <ImageContainer src="/Images/Docker.png" alt="Inception" />,
     icon: <IconBoxAlignTopLeft className="h-4 w-4 text-white" />,
+    details: "Inception is a DevOps project focused on containerization using Docker. It involves setting up a small infrastructure composed of different services under specific rules, emphasizing the importance of using Docker Compose.",
+    technologies: ["Docker", "Docker Compose", "NGINX", "MariaDB", "WordPress", "Linux"],
   },
-];
+]
