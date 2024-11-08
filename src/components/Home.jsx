@@ -4,6 +4,7 @@ import { BackgroundLines } from "@/components/ui/background-lines";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { usePathname } from 'next/navigation'
+import Image from "next/image";
 
 
 
@@ -84,10 +85,12 @@ export function Home() {
               duration: 0.5,
               ease: "easeInOut"
             }}
-            className="bg-white text-black w-full sm:w-auto h-12 px-6 text-base font-medium cursor-pointer hover:bg-gray-200 transition-colors duration-200 rounded-lg shadow shadow-white/30 shadow-lg"
+            className=" flex flex-row items-center gap-2 justify-center bg-white text-black w-full sm:w-auto 
+            h-12 px-6 text-base font-medium cursor-pointer hover:bg-gray-200 transition-colors duration-200 rounded-full shadow shadow-white/30 shadow-lg"
             onClick={(e) => smoothScroll(e, "projects")}
           >
             Explore my work
+            <Image src="/images/arrow.svg" alt="arrow" width={8} height={8} />
           </motion.button>
         </motion.div>
       </div>

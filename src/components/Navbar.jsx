@@ -81,7 +81,7 @@ export default function Navbar() {
   ]
 
   return (
-    <header className="fixed top-0 z-50 w-full w-[100vw] flex items-center justify-center bg-black md:bg-transparent text-white pt-4">
+    <header className="fixed top-0 z-50 w-[100vw] flex items-center justify-center bg-black md:bg-transparent text-white pt-4">
       <div className="flex flex-row h-16 items-center justify-between w-full px-4 md:px-6 max-w-[2000px]">
         <Link href="/" className="flex items-center space-x-2">
           <Image src="/Images/Logo.svg" alt="Logo" width={40} height={40} />
@@ -107,6 +107,7 @@ export default function Navbar() {
         <div className="hidden md:block">
           <Button 
             className="bg-white text-black hover:bg-gray-200 transition-colors duration-200"
+            
             onClick={() => smoothScroll("contact")}
           >
             Contact Me
