@@ -3,6 +3,8 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
+import {CardStackDemo} from "@/components/CardStackDemo"
+
 
 const smoothScroll = (e, target) => {
   e.preventDefault()
@@ -42,7 +44,7 @@ export default function About() {
               initial={{ x: -20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="bg-clip-text text-center text-transparent bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-bold tracking-tight"
+              className="bg-clip-text text-transparent bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-bold tracking-tight"
             >
               About Me
             </motion.h2>
@@ -61,7 +63,15 @@ export default function About() {
               </p>
               <p>
                 Recently, I developed{' '}
-                <Link href="#projects"  onClick={(e) => smoothScroll(e, "projects")} className="text-white hover:underline font-medium">ft_transcendence</Link>,{' '}
+                <Link href="#projects" onClick={(e) => smoothScroll(e, "projects")} className="relative text-white hover:underline font-medium">
+                  ft_transcendence
+                  <motion.span 
+                    className="absolute left-0 -bottom-1 w-full h-0.5 bg-white"
+                    initial={{ scaleX: 0 }} // Start with scaleX 0
+                    whileHover={{ scaleX: 1 }} // Scale to 1 on hover
+                    transition={{ duration: 0.3 }} // Animation duration
+                  />
+                </Link>,{' '}
                 a real-time multiplayer ping pong platform built with Next.js and React. 
                 The project features live gameplay, social networking capabilities, and an 
                 integrated chat system, demonstrating my ability to create interactive, 

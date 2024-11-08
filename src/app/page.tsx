@@ -82,9 +82,7 @@ export default function HomePage() {
       </motion.section>
       <motion.section>
         <LogoCarousel />
-
       </motion.section>
-
       <motion.section
         className="w-full py-8 md:py-16 lg:py-24 relative"
         style={sectionStyle(contactEffect)}

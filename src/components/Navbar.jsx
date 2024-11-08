@@ -16,7 +16,9 @@ import {
 
 
 const smoothScroll = (e, target) => {
-  e.preventDefault()
+  if (e && e.preventDefault) {
+    e.preventDefault()
+  }
   if (target === "resume") {
     window.open("/AbdellahResume.pdf", "_blank")
   } else {
@@ -107,8 +109,10 @@ export default function Navbar() {
         <div className="hidden md:block">
           <Button 
             className="bg-white text-black hover:bg-gray-200 transition-colors duration-200"
-            
-            onClick={() => smoothScroll("contact")}
+            onClick={(e) => {
+              smoothScroll(e, "contact")
+              toggleMenu()
+            }}
           >
             Contact Me
           </Button>
