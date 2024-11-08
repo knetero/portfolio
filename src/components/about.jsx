@@ -107,18 +107,18 @@ export default function About() {
               <div className="absolute inset-0 bg-gradient-to-br from-neutral-800 to-neutral-900 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform rotate-3" />
               <div className="absolute inset-0 bg-gradient-to-tr from-neutral-700 to-neutral-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -rotate-3" />
               <div className="relative z-10 w-full h-full rounded-lg overflow-hidden border-4 border-neutral-700 shadow-xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-neutral-800/30 to-neutral-900/30 mix-blend-overlay" />
+                <div className="absolute inset-0 bg-gradient-to-br from-neutral-800/30 to-neutral-900/30 mix-blend-overlay " />
                 <Image
-                  src="/Images/avatar.jpg"
+                  src="/Images/pic.jpg"
                   alt="Profile"
                   width={500}
                   height={500}
-                  className="object-cover w-full h-full transition-all duration-300 transform group-hover:scale-105 grayscale group-hover:grayscale-0"
+                  className="object-cover w-full h-full transition-all duration-300 transform group-hover:scale-105 grayscale-[50%] s group-hover:grayscale-0"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             </div>
-            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-gradient-to-br from-neutral-700 to-neutral-800 rounded-full opacity-75 blur-xl" />
+            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-gradient-to-br from-neutral-700 to-neutral-800 rounded-full opacity-75 blur-xl " />
             <div className="absolute -top-4 -left-4 w-32 h-32 bg-gradient-to-br from-neutral-800 to-neutral-900 rounded-full opacity-75 blur-xl" />
           </motion.div>
         </div>
