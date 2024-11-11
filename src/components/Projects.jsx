@@ -3,7 +3,6 @@
 import React from "react"
 import { BentoGrid, BentoGridItem } from "./ui/bento-grid"
 import {
-  IconBoxAlignTopLeft,
   IconDeviceNintendo,
   IconPingPong,
   IconBrandDocker,
