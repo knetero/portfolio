@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description: "Personal Front-end Developer Portfolio",
     images: [
       {
-        url: "/Images/picLink.png", // Adjust this path to match your image location
+        url: "/picLink.png", // Adjust this path to match your image location
         width: 1200,
         height: 630,
         alt: "Abdellah - Frontend Developer",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Abdellah",
     description: "Personal Front-end Developer Portfolio",
-    images: ["/Images/picLink.png"], // Adjust this path to match your image location
+    images: ["/picLink.png"], // Adjust this path to match your image location
   },
 }
 
