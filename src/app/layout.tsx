@@ -21,11 +21,12 @@ export const metadata: Metadata = {
   title: "Abdellah",
   description: "Personal Front-end Developer Portfolio",
   openGraph: {
+    type: 'website',
     title: "Abdellah",
     description: "Personal Front-end Developer Portfolio",
     images: [
       {
-        url: "/Images/picLink", 
+        url: "/Images/picLink.png", // Adjust this path to match your image location
         width: 1200,
         height: 630,
         alt: "Abdellah - Frontend Developer",
@@ -36,9 +37,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Abdellah",
     description: "Personal Front-end Developer Portfolio",
-    images: ["/Images/picLink"],
+    images: ["/Images/picLink.png"], // Adjust this path to match your image location
   },
-};
+}
 
 export default function RootLayout({
   children,
