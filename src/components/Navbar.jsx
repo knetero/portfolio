@@ -86,7 +86,7 @@ export default function Navbar() {
     <header className="fixed top-0 z-50 w-[100vw] flex items-center justify-center bg-black md:bg-transparent text-white pt-4">
       <div className="flex flex-row h-16 items-center justify-between w-full px-4 md:px-6 max-w-[2000px]">
         <Link href="/" className="flex items-center space-x-2">
-          <Image src="/Images/Logo.svg" alt="Logo" width={40} height={40} />
+          <Image src="/Images/Logo.svg" alt="Logo" width={40} height={40} className=" w-[30px] h-[30px] sm:w-[40px] sm:h-[40px]"/>
         </Link>
         <nav className="hidden md:flex flex flex-col items-center h-16 w-[500px] justify-center space-x-4 rounded-full bg-white/30 backdrop-blur-lg  dark:border-neutral-800">
           <NavigationMenu>
