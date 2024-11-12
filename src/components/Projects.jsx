@@ -17,14 +17,14 @@ import { motion, AnimatePresence } from "framer-motion"
 
 export function Projects() {
   return (
-    <div className="flex flex-col items-center justify-center gap-4 sm:gap-12 w-auto mx-auto">
+    <div className="flex flex-col items-center justify-center gap-4 sm:gap-12 w-auto mx-auto ">
       <h2 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans py-4 md:py-6 relative z-20 font-bold tracking-tight">
         Featured Projects
       </h2>
       <p className="bg-clip-text text-transparent text-center w-[95%] bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-lg sm:text-2xl tracking-tight">
         Explore a curated selection of projects <br className="bg-clip-text text-transparent bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white"/> That showcase the power of creativity and innovation.
       </p>
-      <BentoGrid className="max-w-5xl sm:mx-auto mx-[20px]">
+      <BentoGrid className="max-w-5xl sm:mx-auto mx-[20px] ">
         {items.map((item, i) => (
           <BentoGridItem
             key={i}
@@ -72,7 +72,7 @@ const ProjectModal = ({ item }) => {
       </DialogTrigger>
       <AnimatePresence>
         {isOpen && (
-          <DialogContent className="max-w-full sm:max-w-[600px] h-[100%] sm:h-auto p-0 overflow-hidden bg-neutral-900 text-neutral-100 border border-neutral-800" forceMount>
+          <DialogContent className="max-w-full sm:max-w-[600px] h-[100%] sm:h-auto p-0 overflow-hidden bg-neutral-900 text-neutral-100 border border-neutral-800 " forceMount>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -89,7 +89,7 @@ const ProjectModal = ({ item }) => {
               </DialogHeader>
               <div className="p-6">
                 <div className="mb-6">
-                  <h4 className="text-lg font-semibold mb-2 text-white">Project Details:</h4>
+                  <h4 className="text-lg font-semibold mb-2 text-white ">Project Details:</h4>
                   <p className="text-neutral-300">{item.details}</p>
                 </div>
                 <div>

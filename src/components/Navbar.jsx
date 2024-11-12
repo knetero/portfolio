@@ -83,19 +83,19 @@ export default function Navbar() {
   ]
 
   return (
-    <header className="fixed top-0 z-50 w-[100vw] flex items-center justify-center bg-black md:bg-transparent text-white pt-4">
+    <header className="fixed top-0 z-50 w-[100vw] flex items-center justify-center bg-black md:bg-transparent text-white pt-4 ">
       <div className="flex flex-row h-16 items-center justify-between w-full px-4 md:px-6 max-w-[2000px]">
         <Link href="/" className="flex items-center space-x-2">
-          <Image src="/Images/Logo.svg" alt="Logo" width={40} height={40} className=" w-[30px] h-[30px] sm:w-[40px] sm:h-[40px]"/>
+          <Image src="/Images/Logo.svg" alt="Logo" width={40} height={40} className="w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] motion-preset-expand motion-duration-2000 motion-scale-in-[0.5] motion-translate-x-in-[-120%] motion-translate-y-in-[-60%] motion-opacity-in-[33%] motion-rotate-in-[360deg] motion-blur-in-[10px] motion-delay-[0.38s]/scale motion-duration-[0.38s]/opacity motion-duration-[1.20s]/rotate motion-duration-[0.15s]/blur motion-delay-[0.60s]/blur motion-ease-spring-bouncier"/>
         </Link>
-        <nav className="hidden md:flex flex flex-col items-center h-16 w-[500px] justify-center space-x-4 rounded-full bg-white/30 backdrop-blur-lg  dark:border-neutral-800">
+        <nav className="hidden md:flex flex flex-col items-center h-16 w-[500px] justify-center space-x-4 rounded-full bg-white/30 backdrop-blur-lg  dark:border-neutral-800 shadow-md shadow-white/10 motion-preset-expand  ">
           <NavigationMenu>
             <NavigationMenuList>
               {navLinks.map((link) => (
                 <NavigationMenuItem key={link.id}>
                   <Link href={link.href} legacyBehavior passHref>
                     <NavigationMenuLink 
-                      className="group inline-flex h-9 w-max items-center justify-center text-gray-300 hover:text-white transition-colors duration-200"
+                      className="group inline-flex h-9 w-max items-center justify-center text-gray-300 hover:text-white transition-colors duration-200 "
                       onClick={(e) => smoothScroll(e, link.id)}
                     >
                       {link.label}
@@ -108,7 +108,7 @@ export default function Navbar() {
         </nav>
         <div className="hidden md:block">
           <Button 
-            className="bg-white text-black hover:bg-gray-200 transition-colors duration-200"
+            className="bg-white text-black hover:bg-gray-200 transition-colors duration-200 -motion-translate-x-in-100 motion-translate-y-in-75 "
             onClick={(e) => {
               smoothScroll(e, "contact")
               toggleMenu()

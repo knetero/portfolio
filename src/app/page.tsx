@@ -33,17 +33,18 @@ export default function HomePage() {
         isMobile ? [mobileStart, Math.min(mobileStart + 0.1, mobileEnd)] : [start, Math.min(start + 0.1, end)],
         [0.3, 1]
       ),
-      translateY: useTransform(
+      y: useTransform(
         scrollYProgress,
         isMobile ? [mobileStart, Math.min(mobileStart + 0.1, mobileEnd)] : [start, Math.min(start + 0.1, end)],
-        ['10px', '0px']
+        ['20px', '0px']
       ),
     }
   }
 
   const projectsEffect = createScrollEffect(0.1, 0.4)
   const aboutEffect = createScrollEffect(0.3, 0.6)
-  const contactEffect = createScrollEffect(0.5, 0.8)
+  const sliderEffect = createScrollEffect(0.5, 0.7)
+  const contactEffect = createScrollEffect(0.7, 0.9)
 
   const sectionStyle = (effect: ReturnType<typeof createScrollEffect>) => ({
     ...effect,
@@ -51,7 +52,12 @@ export default function HomePage() {
   })
 
   return (
-    <div className="flex flex-col min-h-screen ">
+    <div className="flex flex-col min-h-screen">
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-primary z-50"
+        style={{ scaleX: scrollYProgress, transformOrigin: "0%" }}
+      />
+
       <section
         className="flex-grow relative"
         id="home"
@@ -74,21 +80,35 @@ export default function HomePage() {
       >
         <About />
       </motion.section>
+
       <motion.section
-          className="w-full relative h-[400px]"
-          style={sectionStyle(projectsEffect)}
-        >
-          <InfiniteSlider />
+        className="w-full relative h-[400px]"
+        style={sectionStyle(sliderEffect)}
+      >
+        <InfiniteSlider />
       </motion.section>
-      <motion.section>
+
+      <motion.section
+        style={{
+          opacity: useTransform(scrollYProgress, [0.6, 0.8], [0, 1]),
+        }}
+      >
         <LogoCarousel />
       </motion.section>
+
       <motion.section
-        className="w-full py-8 md:py-16 lg:py-24 relative"
+        className="w-full py-8 md:py-16 lg:py-24 relative "
         style={sectionStyle(contactEffect)}
         id="contact"
       >
-        <WobbleCardDemo />
+        <motion.div
+          // initial={{ rotate: 0 }}
+          // whileInView={{ rotate: [0, 2, -2, 0] }}
+          // transition={{ duration: 0.5, ease: "easeInOut" }}
+          
+        >
+          <WobbleCardDemo />
+        </motion.div>
       </motion.section>
     </div>
   )

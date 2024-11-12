@@ -86,7 +86,8 @@ const config: Config = {
     },
   },
   plugins: [
-    require("tailwindcss-animate"),
+    require("tailwindcss-animate"), 
+    require("tailwindcss-motion"),
     addVariablesForColors,
     function ({ matchUtilities, theme }: any) {
       matchUtilities(

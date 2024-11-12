@@ -11,7 +11,7 @@ import { SocialMedia } from "@/components/SocialMedia"
 export function WobbleCardDemo() {
   return (
     (<div
-      className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-7xl mx-auto w-full ">
+      className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-7xl mx-auto w-full motion-preset-oscillate motion-duration-[8000ms]">
       <WobbleCard
         containerClassName="col-span-1 lg:col-span-3 bg-neutral-900/50 min-h-[200px] lg:min-h-[600px] xl:min-h-[300px]">
         <div className="max-w-sm">
@@ -27,7 +27,8 @@ export function WobbleCardDemo() {
         <a href="mailto:azero853@gmail.com" target="_blank" >
 
          <Button 
-            className="relative mt-6 sm:absolute sm:mt-0 sm:top-7 sm:right-10 text-sm sm:text-md bg-white text-black font-bold hover:bg-gray-200 transition-colors duration-200 w-32 sm:w-40 h-10 sm:h-12 rounded-lg flex items-center justify-center gap-2 shadow shadow-white/30 shadow-lg"
+            className="relative mt-6 sm:absolute sm:mt-0 sm:top-7 sm:right-10 text-sm sm:text-md bg-white text-black font-bold hover:bg-gray-200 transition-colors duration-200 w-32 sm:w-40 h-10 sm:h-12
+            rounded-lg flex items-center justify-center gap-2 shadow shadow-white/30 shadow-lg"
             >
             Contact Me
             <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />

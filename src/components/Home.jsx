@@ -66,7 +66,7 @@ export function Home() {
         </motion.p>
         
         <motion.div 
-          className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mt-8 md:mt-10"
+          className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mt-8 md:mt-10 motion-preset-oscillate motion-duration-2000 "
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
@@ -85,7 +85,7 @@ export function Home() {
               duration: 0.5,
               ease: "easeInOut"
             }}
-            className=" flex flex-row items-center gap-2 justify-center bg-white text-black w-full sm:w-auto 
+            className=" flex flex-row items-center gap-2 justify-center bg-white text-black w-full sm:w-auto
             h-12 px-6 text-base font-medium cursor-pointer hover:bg-gray-200 transition-colors duration-200 rounded-full shadow shadow-white/30 shadow-lg"
             onClick={(e) => smoothScroll(e, "projects")}
           >
