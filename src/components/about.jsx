@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -87,11 +87,24 @@ export default function About() {
             >
               <h3 className="text-neutral-100 mb-3">Here are a few technologies I've been working with recently:</h3>
               <ul className="grid grid-cols-2 gap-2 text-sm">
-                {technologies.map((tech) => (
-                  <li key={tech.id} className="flex items-center space-x-2 font-bold">
+                {technologies.map((tech, index) => (
+                  <motion.li
+                    key={tech.id}
+                    className="flex items-center space-x-2 font-bold"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      duration: 0.3,
+                      delay: index * 0.1,
+                      type: "spring",
+                      stiffness: 260,
+                      damping: 20 
+                    }}
+                  >
                     <span className="text-white">▹</span>
                     <span>{tech.name}</span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </motion.div>

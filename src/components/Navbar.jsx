@@ -88,7 +88,7 @@ export default function Navbar() {
         <Link href="/" className="flex items-center space-x-2">
           <Image src="/Images/Logo.svg" alt="Logo" width={40} height={40} className="w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] motion-preset-expand motion-duration-2000 motion-scale-in-[0.5] motion-translate-x-in-[-120%] motion-translate-y-in-[-60%] motion-opacity-in-[33%] motion-rotate-in-[360deg] motion-blur-in-[10px] motion-delay-[0.38s]/scale motion-duration-[0.38s]/opacity motion-duration-[1.20s]/rotate motion-duration-[0.15s]/blur motion-delay-[0.60s]/blur motion-ease-spring-bouncier"/>
         </Link>
-        <nav className="hidden md:flex flex flex-col items-center h-16 w-[500px] justify-center space-x-4 rounded-full bg-white/30 backdrop-blur-lg  dark:border-neutral-800 shadow-md shadow-white/10 motion-preset-expand  ">
+        <nav className="hidden md:flex flex flex-col items-center h-16 w-[500px] justify-center space-x-4 rounded-full bg-white/30 backdrop-blur-lg  dark:border-neutral-800 shadow-md shadow-white/10 ">
           <NavigationMenu>
             <NavigationMenuList>
               {navLinks.map((link) => (
@@ -108,7 +108,7 @@ export default function Navbar() {
         </nav>
         <div className="hidden md:block">
           <Button 
-            className="bg-white text-black hover:bg-gray-200 transition-colors duration-200 -motion-translate-x-in-100 motion-translate-y-in-75 "
+            className="bg-white text-black hover:bg-gray-200 transition-colors duration-200 -motion-translate-x-in-100 motion-translate-y-in-75"
             onClick={(e) => {
               smoothScroll(e, "contact")
               toggleMenu()
