@@ -30,6 +30,9 @@ const InfiniteSlider = () => {
   const inView = useInView(ref)
 
   useEffect(() => {
+    const isMobile = window.innerWidth <= 768
+    const duration = isMobile ? 10 : 40
+
     if (inView) {
       controls.start({
         x: ['-100%', '0%'],
@@ -37,7 +40,7 @@ const InfiniteSlider = () => {
           x: {
             repeat: Infinity,
             repeatType: 'loop',
-            duration: 40,
+            duration: duration,
             ease: 'linear',
           },
         },
