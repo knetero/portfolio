@@ -109,7 +109,15 @@ const ProjectModal = ({ item }) => {
                   </ul>
                 </div>
               </div>
-              <div className="p-6 sm:bg-neutral-800">
+              <div className="p-6 sm:bg-neutral-800 flex gap-2">
+                {item.link && (
+                  <Button
+                    onClick={() => window.open(item.link, '_blank')}
+                    className="w-full bg-neutral-800 text-neutral-100 border border-neutral-700 hover:bg-neutral-700 hover:text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300"
+                  >
+                    View Project
+                  </Button>
+                )}
                 <Button
                   onClick={() => setIsOpen(false)}
                   className="w-full bg-white text-neutral-900 hover:bg-neutral-200 font-semibold py-2 px-4 rounded-lg transition-all duration-300"
@@ -133,6 +141,7 @@ const items = [
     icon: <IconMessage className="h-4 w-4 text-white" />,
     details: "This project is a fully functional Internet Relay Chat (IRC) server and client implementation. It allows multiple users to communicate in real-time through various channels, supporting private messaging and channel operations.",
     technologies: ["C++", "Socket Programming", "Multi-threading", "Network Protocols"],
+    link: "https://github.com/knetero/IRC",
   },
   {
     title: "Minishell",
@@ -141,6 +150,7 @@ const items = [
     icon: <IconAlignBoxLeftBottom className="h-4 w-4 text-white" />,
     details: "Minishell is a simplified version of a Unix shell, implemented entirely in C. It supports basic shell functionalities such as command execution, environment variable management, and built-in commands.",
     technologies: ["C", "Process Management", "System Calls", "Parsing"],
+    link: "https://github.com/knetero/minishell",
   },
   {
     title: "Cub3d Game",
@@ -149,14 +159,16 @@ const items = [
     icon: <IconDeviceNintendo className="h-4 w-4 text-white" />,
     details: "Cub3d is a 3D game engine built from scratch using raycasting techniques. It renders a 3D-like environment from a 2D map, similar to classic games like Wolfenstein 3D.",
     technologies: ["C", "Raycasting", "Computer Graphics", "Game Development"],
+    link: "https://github.com/knetero/cub3d",
   },
   {
-    title: "Online Pong Game",
+    title: "Online PingPong Game",
     description: "A website for playing Ping Pong online, featuring chat and friends functionality.",
     header: <ImageContainer src="/Images/pong2.png" alt="Ping Pong Game" />,
     icon: <IconPingPong className="h-4 w-4 text-white" />,
     details: "This project is a full-stack web application that allows users to play Pong online in real-time. It features user authentication, matchmaking, live gameplay, and a chat system for players to communicate.",
     technologies: ["Next.Js", "React.Js", "Javascipt" , "WebSocket", "HTML5 Canvas", "Tailwind CSS", "Database Management"],
+    link: "https://github.com/knetero/PingPong",
   },
   {
     title: "Inception",
@@ -165,5 +177,6 @@ const items = [
     icon: <IconBrandDocker className="h-4 w-4 text-white" />,
     details: "Inception is a DevOps project focused on containerization using Docker. It involves setting up a small infrastructure composed of different services under specific rules, emphasizing the importance of using Docker Compose.",
     technologies: ["Docker", "Docker Compose", "NGINX", "MariaDB", "WordPress", "Linux"],
+    link: "https://github.com/knetero/inception",
   },
 ]

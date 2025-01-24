@@ -122,7 +122,7 @@ export default function About() {
               <div className="relative z-10 w-full h-full rounded-lg overflow-hidden border-4 border-neutral-700 shadow-xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-neutral-800/30 to-neutral-900/30 mix-blend-overlay" />
                 <Image
-                  src="/Images/pic.jpg"
+                  src="/Images/pic3.jpg"
                   alt="Profile"
                   width={500}
                   height={500}
