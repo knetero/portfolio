@@ -8,6 +8,8 @@ import {
   IconBrandDocker,
   IconAlignBoxLeftBottom,
   IconMessage,
+  IconMovie,
+  IconMusic,
 } from "@tabler/icons-react"
 import { ArrowUpRight} from "lucide-react"
 import Image from "next/image"
@@ -179,4 +181,23 @@ const items = [
     technologies: ["Docker", "Docker Compose", "NGINX", "MariaDB", "WordPress", "Linux"],
     link: "https://github.com/knetero/inception",
   },
+  {
+    title: "TACTUNE",
+    description: "A dynamic sonic sound branding agency site featuring interactive project gallery and client request form.",
+    header: <ImageContainer src="/Images/Tactune.png" alt="TACTUNE - Sound Branding Agency" />,
+    icon: <IconMusic className="h-4 w-4 text-white" />,
+    details: "As a Freelance Frontend Developer, I developed a modern sound branding agency website using Next.js and Tailwind CSS. The site features smooth Framer Motion animations, an interactive project gallery, and a client request system. Achieved a 95% Lighthouse score through performance optimizations and mobile-first design principles.",
+    technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "Responsive Design", "Performance Optimization"],
+    link: "https://music-mauve-one.vercel.app/",
+  },
+  {
+    title: "WATCHWISE - IMDB CLONE",
+    description: "A responsive, modern UI IMDb clone using Next.js and Tailwind CSS, fetching meta-data from TMDB API for trending movies/TV shows and user search results.",
+    header: <ImageContainer src="/Images/watchWise.jpg" alt="WATCHWISE - IMDB CLONE" />,
+    icon: <IconMovie className="h-4 w-4 text-white" />,
+    details: "This project implements user authentication via NextAuth.js, allowing users to create watchlists with persistent storage. Features include real-time search functionality, custom movie/tv show collections, and responsive design for optimal viewing on all devices.",
+    technologies: ["Next.js", "Tailwind CSS", "NextAuth.js", "TMDB API"],
+    link: "https://watchwise-one.vercel.app/",
+  },
+ 
 ]

@@ -15,6 +15,8 @@ const LogoCarousel = () => {
     { src: "/Images/vscode.svg", alt: "vscode" },
     { src: "/Images/docker.svg", alt: "Docker" },
     { src: "/Images/figma.svg", alt: "Figma" },
+    { src: "/Images/angular.svg", alt: "Angular" },
+    { src: "/Images/vuejs.svg", alt: "Vue.js" },
   ];
 
   useEffect(() => {

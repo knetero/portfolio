@@ -25,6 +25,8 @@ export default function About() {
   const technologies = [
     { name: "Next.js", id: 6 },
     { name: "React", id: 3 },
+    { name: "Angular", id: 4 },
+    { name: "Vue.js", id: 5 },
     { name: "JavaScript (ES6+)", id: 1 },
     { name: "TailwindCSS", id: 2 },
   ]
