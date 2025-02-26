@@ -10,6 +10,7 @@ import {
   IconMessage,
   IconMovie,
   IconMusic,
+  IconUser,
 } from "@tabler/icons-react"
 import { ArrowUpRight} from "lucide-react"
 import Image from "next/image"
@@ -199,5 +200,14 @@ const items = [
     technologies: ["Next.js", "Tailwind CSS", "NextAuth.js", "TMDB API"],
     link: "https://watchwise-one.vercel.app/",
   },
+  {
+    title: "Angular Portfolio",
+    description: "A responsive, modern portfolio website built with Angular and Tailwind CSS, showcasing projects and skills.",
+    header: <ImageContainer src="/Images/angularPortfolio.png" alt="Angular Portfolio" />,
+    icon: <IconUser className="h-4 w-4 text-white" />,
+    details: "This project is a responsive, modern portfolio website built with Angular and Tailwind CSS. It showcases projects and skills, providing a clean and professional online presence. Through this project, I practiced Angular fundamentals including components, services,and state management.",
+    technologies: ["Angular", "Tailwind CSS", "Responsive Design", "Web Development"],
+    link: "https://angular-portfolio-flame-delta.vercel.app/",
+  }
  
 ]
