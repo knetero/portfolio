@@ -11,6 +11,7 @@ import {
   IconMovie,
   IconMusic,
   IconUser,
+  IconHaze,
 } from "@tabler/icons-react"
 import { ArrowUpRight} from "lucide-react"
 import Image from "next/image"
@@ -138,51 +139,6 @@ const ProjectModal = ({ item }) => {
 
 const items = [
   {
-    title: "Internet Relay Chat",
-    description: "An implementation of Internet Relay Chat using C++.",
-    header: <ImageContainer src="/Images/irc.png" alt="Internet Relay Chat" />,
-    icon: <IconMessage className="h-4 w-4 text-white" />,
-    details: "This project is a fully functional Internet Relay Chat (IRC) server and client implementation. It allows multiple users to communicate in real-time through various channels, supporting private messaging and channel operations.",
-    technologies: ["C++", "Socket Programming", "Multi-threading", "Network Protocols"],
-    link: "https://github.com/knetero/IRC",
-  },
-  {
-    title: "Minishell",
-    description: "An implementation of Bash in C, providing a lightweight shell environment.",
-    header: <ImageContainer src="/Images/minishell.png" alt="Minishell" />,
-    icon: <IconAlignBoxLeftBottom className="h-4 w-4 text-white" />,
-    details: "Minishell is a simplified version of a Unix shell, implemented entirely in C. It supports basic shell functionalities such as command execution, environment variable management, and built-in commands.",
-    technologies: ["C", "Process Management", "System Calls", "Parsing"],
-    link: "https://github.com/knetero/minishell",
-  },
-  {
-    title: "Cub3d Game",
-    description: "An engaging 3D game showcasing innovative design and gameplay.",
-    header: <ImageContainer src="/Images/cub3d.png" alt="Cub3d Game" />,
-    icon: <IconDeviceNintendo className="h-4 w-4 text-white" />,
-    details: "Cub3d is a 3D game engine built from scratch using raycasting techniques. It renders a 3D-like environment from a 2D map, similar to classic games like Wolfenstein 3D.",
-    technologies: ["C", "Raycasting", "Computer Graphics", "Game Development"],
-    link: "https://github.com/knetero/cub3d",
-  },
-  {
-    title: "Online PingPong Game",
-    description: "A website for playing Ping Pong online, featuring chat and friends functionality.",
-    header: <ImageContainer src="/Images/pong2.png" alt="Ping Pong Game" />,
-    icon: <IconPingPong className="h-4 w-4 text-white" />,
-    details: "This project is a full-stack web application that allows users to play Pong online in real-time. It features user authentication, matchmaking, live gameplay, and a chat system for players to communicate.",
-    technologies: ["Next.Js", "React.Js", "Javascipt" , "WebSocket", "HTML5 Canvas", "Tailwind CSS", "Database Management"],
-    link: "https://github.com/knetero/PingPong",
-  },
-  {
-    title: "Inception",
-    description: "A project exploring the fundamentals of containerization.",
-    header: <ImageContainer src="/Images/Docker.png" alt="Inception" />,
-    icon: <IconBrandDocker className="h-4 w-4 text-white" />,
-    details: "Inception is a DevOps project focused on containerization using Docker. It involves setting up a small infrastructure composed of different services under specific rules, emphasizing the importance of using Docker Compose.",
-    technologies: ["Docker", "Docker Compose", "NGINX", "MariaDB", "WordPress", "Linux"],
-    link: "https://github.com/knetero/inception",
-  },
-  {
     title: "TACTUNE",
     description: "A dynamic sonic sound branding agency site featuring interactive project gallery and client request form.",
     header: <ImageContainer src="/Images/Tactune.png" alt="TACTUNE - Sound Branding Agency" />,
@@ -208,6 +164,61 @@ const items = [
     details: "This project is a responsive, modern portfolio website built with Angular and Tailwind CSS. It showcases projects and skills, providing a clean and professional online presence. Through this project, I practiced Angular fundamentals including components, services,and state management.",
     technologies: ["Angular", "Tailwind CSS", "Responsive Design", "Web Development"],
     link: "https://angular-portfolio-flame-delta.vercel.app/",
-  }
+  },
+  {
+    title: "Online PingPong Game",
+    description: "A website for playing Ping Pong online, featuring chat and friends functionality.",
+    header: <ImageContainer src="/Images/pong2.png" alt="Ping Pong Game" />,
+    icon: <IconPingPong className="h-4 w-4 text-white" />,
+    details: "This project is a full-stack web application that allows users to play Pong online in real-time. It features user authentication, matchmaking, live gameplay, and a chat system for players to communicate.",
+    technologies: ["Next.Js", "React.Js", "Javascipt" , "WebSocket", "HTML5 Canvas", "Tailwind CSS", "Database Management"],
+    link: "https://github.com/knetero/PingPong",
+  },
+  {
+    title: "Angular Weather App",
+    description: "A weather app that allows users to search for weather information for a specific city.",
+    header: <ImageContainer src="/Images/weatherapp.png" alt="Weather App" />,
+    icon: <IconHaze className="h-4 w-4 text-white" />,
+    details: "This project is a weather app that allows users to search for weather information for a specific city. It uses the OpenWeatherMap API to fetch weather data and displays it in a user-friendly format.",
+    technologies: ["Angular", "Tailwind CSS", "OpenWeatherMap API"],
+    link: "https://angular-weather-rouge.vercel.app/",
+  },
+  {
+    title: "Minishell",
+    description: "An implementation of Bash in C, providing a lightweight shell environment.",
+    header: <ImageContainer src="/Images/minishell.png" alt="Minishell" />,
+    icon: <IconAlignBoxLeftBottom className="h-4 w-4 text-white" />,
+    details: "Minishell is a simplified version of a Unix shell, implemented entirely in C. It supports basic shell functionalities such as command execution, environment variable management, and built-in commands.",
+    technologies: ["C", "Process Management", "System Calls", "Parsing"],
+    link: "https://github.com/knetero/minishell",
+  },
+  {
+    title: "Internet Relay Chat",
+    description: "An implementation of Internet Relay Chat using C++.",
+    header: <ImageContainer src="/Images/irc.jpg" alt="Internet Relay Chat" />,
+    icon: <IconMessage className="h-4 w-4 text-white" />,
+    details: "This project is a fully functional Internet Relay Chat (IRC) server and client implementation. It allows multiple users to communicate in real-time through various channels, supporting private messaging and channel operations.",
+    technologies: ["C++", "Socket Programming", "Multi-threading", "Network Protocols"],
+    link: "https://github.com/knetero/IRC",
+  },
+  {
+    title: "Cub3d Game",
+    description: "An engaging 3D game showcasing innovative design and gameplay.",
+    header: <ImageContainer src="/Images/cub3d.png" alt="Cub3d Game" />,
+    icon: <IconDeviceNintendo className="h-4 w-4 text-white" />,
+    details: "Cub3d is a 3D game engine built from scratch using raycasting techniques. It renders a 3D-like environment from a 2D map, similar to classic games like Wolfenstein 3D.",
+    technologies: ["C", "Raycasting", "Computer Graphics", "Game Development"],
+    link: "https://github.com/knetero/cub3d",
+  },
  
+  {
+    title: "Inception",
+    description: "A project exploring the fundamentals of containerization.",
+    header: <ImageContainer src="/Images/Docker.png" alt="Inception" />,
+    icon: <IconBrandDocker className="h-4 w-4 text-white" />,
+    details: "Inception is a DevOps project focused on containerization using Docker. It involves setting up a small infrastructure composed of different services under specific rules, emphasizing the importance of using Docker Compose.",
+    technologies: ["Docker", "Docker Compose", "NGINX", "MariaDB", "WordPress", "Linux"],
+    link: "https://github.com/knetero/inception",
+  },
+  
 ]
