@@ -22,7 +22,7 @@ const config: Config = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         },
-        grayscale:{
+        grayscale: {
           50: '50%',
         },
         popover: {
@@ -80,13 +80,13 @@ const config: Config = {
         },
         'slide-left': {
           '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' }, // Changed to -50% for seamless loop
+          '100%': { transform: 'translateX(-50%)' },
         },
       },
     },
   },
   plugins: [
-    require("tailwindcss-animate"), 
+    require("tailwindcss-animate"),
     require("tailwindcss-motion"),
     addVariablesForColors,
     function ({ matchUtilities, theme }: any) {
@@ -119,7 +119,7 @@ function addVariablesForColors({ addBase, theme }: any) {
   let newVars = Object.fromEntries(
     Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
   );
-  
+
   addBase({
     ":root": newVars,
   });

@@ -21,8 +21,8 @@ export const CardStack = ({
   const startFlipping = () => {
     interval = setInterval(() => {
       setCards((prevCards) => {
-        const newArray = [...prevCards]; // create a copy of the array
-        newArray.unshift(newArray.pop()); // move the last element to the front
+        const newArray = [...prevCards];
+        newArray.unshift(newArray.pop());
         return newArray;
       });
     }, 5000);
@@ -41,8 +41,8 @@ export const CardStack = ({
             }}
             animate={{
               top: index * -CARD_OFFSET,
-              scale: 1 - index * SCALE_FACTOR, // decrease scale for cards that are behind
-              zIndex: cards.length - index, //  decrease z-index for the cards that are behind
+              scale: 1 - index * SCALE_FACTOR,
+              zIndex: cards.length - index,
             }}>
             <div className="font-normal text-neutral-900 dark:text-neutral-300">
               {card.content}

@@ -29,7 +29,7 @@ export default function HomePage() {
 
     return {
       opacity: useTransform(
-        scrollYProgress, 
+        scrollYProgress,
         isMobile ? [mobileStart, Math.min(mobileStart + 0.1, mobileEnd)] : [start, Math.min(start + 0.1, end)],
         [0.3, 1]
       ),
@@ -64,7 +64,7 @@ export default function HomePage() {
       >
         <Home />
       </section>
-      
+
       <motion.section
         className="w-full py-8 md:py-16 lg:py-24 relative"
         style={sectionStyle(projectsEffect)}
@@ -102,10 +102,7 @@ export default function HomePage() {
         id="contact"
       >
         <motion.div
-          // initial={{ rotate: 0 }}
-          // whileInView={{ rotate: [0, 2, -2, 0] }}
-          // transition={{ duration: 0.5, ease: "easeInOut" }}
-          
+
         >
           <WobbleCardDemo />
         </motion.div>

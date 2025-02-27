@@ -45,8 +45,6 @@ export function SocialMedia() {
   return (
     (<div className="flex items-center justify-center pt-5 w-[20%] ">
       <FloatingDock
-        // only for demo, remove for production
-        mobileClassName="translate-y-20"
         items={links} />
     </div>)
   );

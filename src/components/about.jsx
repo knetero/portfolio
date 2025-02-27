@@ -68,9 +68,9 @@ export default function About() {
                   ft_transcendence
                   <motion.span 
                     className="absolute left-0 -bottom-1 w-full h-0.5 bg-white"
-                    initial={{ scaleX: 0 }} // Start with scaleX 0
-                    whileHover={{ scaleX: 1 }} // Scale to 1 on hover
-                    transition={{ duration: 0.3 }} // Animation duration
+                    initial={{ scaleX: 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ duration: 0.3 }}
                   />
                 </Link>,{' '}
                 a real-time multiplayer ping pong platform built with Next.js and React. 

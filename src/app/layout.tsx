@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ShootingStars } from "@/components/ui/shooting-stars";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     description: "Personal Front-end Developer Portfolio",
     images: [
       {
-        url: "/picLink.png", // Adjust this path to match your image location
+        url: "/picLink.png",
         width: 1200,
         height: 630,
         alt: "Abdellah - Frontend Developer",
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Abdellah",
     description: "Personal Front-end Developer Portfolio",
-    images: ["/picLink.png"], // Adjust this path to match your image location
+    images: ["/picLink.png"],
   },
 }
 
@@ -51,11 +52,13 @@ export default function RootLayout({
       <body
         className={`${inter.className} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ShootingStars className="shooting-stars" />
-        <Navbar />
-        <div className="pt-16">
-          {children}
-        </div>
+        <SmoothScroll>
+          <ShootingStars className="shooting-stars" />
+          <Navbar />
+          <div className="pt-16">
+            {children}
+          </div>
+        </SmoothScroll>
       </body>
     </html>
   );

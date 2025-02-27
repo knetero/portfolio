@@ -12,7 +12,7 @@ const smoothScroll = (e, target) => {
   e.preventDefault()
   const element = document.getElementById(target)
   if (element) {
-    const headerOffset = 64 // Adjust this value based on your header height
+    const headerOffset = 64;
     const elementPosition = element.getBoundingClientRect().top
     const offsetPosition = elementPosition + window.scrollY - headerOffset
 
