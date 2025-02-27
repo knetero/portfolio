@@ -51,7 +51,7 @@ const InfiniteSlider = () => {
   }, [controls, inView])
 
   return (
-    <div ref={ref} className="relative w-full overflow-hidden bg-black py-6 transform -skew-y-3">
+    <div ref={ref} className="relative w-full overflow-hidden py-6 transform -skew-y-3">
       <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-white/10" />
       <motion.div
         className="flex whitespace-nowrap"

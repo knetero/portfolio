@@ -29,7 +29,9 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
             anchors: true
         });
 
-        function onScroll(e: any) { }
+        function onScroll() {
+            // Handle scroll event if needed
+        }
 
         lenisRef.current.on('scroll', onScroll);
 

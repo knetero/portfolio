@@ -21,14 +21,14 @@ import { motion, AnimatePresence } from "framer-motion"
 
 export function Projects() {
   return (
-    <div className="flex flex-col items-center justify-center gap-4 sm:gap-12 w-auto mx-auto ">
+    <div className="flex flex-col items-center justify-center gap-4 sm:gap-12 w-auto mx-auto">
       <h2 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans py-4 md:py-6 relative z-20 font-bold tracking-tight">
         Featured Projects
       </h2>
       <p className="bg-clip-text text-transparent text-center w-[95%] bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-lg sm:text-2xl tracking-tight">
         Explore a curated selection of projects <br className="bg-clip-text text-transparent bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white"/> That showcase the power of creativity and innovation.
       </p>
-      <BentoGrid className="max-w-5xl sm:mx-auto mx-[20px] ">
+      <BentoGrid className="max-w-5xl sm:mx-auto mx-[20px]">
         {items.map((item, i) => (
           <BentoGridItem
             key={i}
@@ -41,7 +41,7 @@ export function Projects() {
             description={item.description}
             header={item.header}
             icon={item.icon}
-            className={i === 3 || i === 6 ? "md:col-span-2" : ""}
+            className={`${i === 3 || i === 6 ? "md:col-span-2" : ""} bg-black`}
           />
         ))}
       </BentoGrid>

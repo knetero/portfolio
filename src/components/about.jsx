@@ -32,7 +32,7 @@ export default function About() {
   ]
 
   return (
-    <section className="w-full min-h-screen bg-black text-neutral-300 py-20 px-4 md:px-8 flex items-center justify-center">
+    <section className="w-full min-h-screen text-neutral-300 py-20 px-4 md:px-8 flex items-center justify-center">
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

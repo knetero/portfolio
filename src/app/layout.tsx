@@ -50,12 +50,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="custom-scrollbar">
       <body
-        className={`${inter.className} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.className} ${geistSans.variable} ${geistMono.variable} antialiased bg-dot-white/[0.2] relative`}
       >
+        <div className="absolute inset-0 bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
         <SmoothScroll>
           <ShootingStars className="shooting-stars" />
           <Navbar />
-          <div className="pt-16">
+          <div className="pt-16 relative">
             {children}
           </div>
         </SmoothScroll>

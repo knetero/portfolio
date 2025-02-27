@@ -49,7 +49,7 @@ const LogoCarousel = () => {
   }, [isHovered]);
 
   return (
-    <section className="bg-black text-white pt-8 pb-4" id="skills">
+    <section className="text-white pt-8 pb-4" id="skills">
       <div className="container mx-auto px-4">
         <h2 className="bg-clip-text pb-8 text-transparent bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-bold tracking-tight text-center">
           My Tech Stack
@@ -59,8 +59,8 @@ const LogoCarousel = () => {
         </p>
         
         <div className="relative">
-          <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-black to-transparent z-10" />
-          <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-black to-transparent z-10" />
+          <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-black/80 to-transparent z-10" />
+          <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-black/80 to-transparent z-10" />
           
           <div 
             ref={containerRef}
