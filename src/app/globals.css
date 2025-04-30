@@ -112,3 +112,21 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Chat button positioning fix */
+.chat-button-fixed {
+  position: fixed !important;
+  bottom: 1.5rem !important;
+  right: 1.5rem !important;
+  z-index: 9999 !important;
+  transform: translateZ(0) !important;
+  will-change: transform !important;
+  backface-visibility: hidden !important;
+}
+
+/* Prevent layout shifts during chat reset */
+.chat-button-fixed.resetting {
+  transform: translateZ(0) !important;
+  transition: none !important;
+  will-change: transform !important;
+}

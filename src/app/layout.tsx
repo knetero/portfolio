@@ -5,6 +5,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import SmoothScroll from "@/components/SmoothScroll";
+import { ChatProvider } from "@/context/ChatContext";
+import ChatButton from "@/components/ui/ChatButton";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -60,6 +62,10 @@ export default function RootLayout({
             {children}
           </div>
         </SmoothScroll>
+        
+        <ChatProvider>
+          <ChatButton />
+        </ChatProvider>
       </body>
     </html>
   );
