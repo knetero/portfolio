@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import MessageList from './MessageList';
-import MessageInput from './MessageInput';
+import MessageInput, { MessageInputRef } from './MessageInput';
 import { useChat } from '@/context/ChatContext';
 
 interface ChatWindowProps {
@@ -14,11 +14,73 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
   const { messages, isLoading, addMessage, resetChat } = useChat();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
+  const messageInputRef = useRef<MessageInputRef>(null);
+  const chatWindowRef = useRef<HTMLDivElement>(null);
   const firstRenderRef = useRef(true);
   const [isChatFocused, setIsChatFocused] = useState(false);
+  const [isInputFocused, setIsInputFocused] = useState(false);
   const [bodyScrollY, setBodyScrollY] = useState(0);
   const [shouldScrollToBottom, setShouldScrollToBottom] = useState(false);
   const previousMessagesLengthRef = useRef(messages.length);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Detect if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
+  // Focus the input field on first render and when chat opens
+  useEffect(() => {
+    if (isChatFocused) {
+      // Small delay to ensure the component is fully mounted and visible
+      setTimeout(() => {
+        messageInputRef.current?.focus();
+      }, 300);
+    }
+  }, [isChatFocused]);
+
+  // Handle input focus state
+  const handleInputFocus = () => {
+    setIsInputFocused(true);
+    
+    // If on mobile, adjust chat window position to stay visible above keyboard
+    if (isMobile && chatWindowRef.current) {
+      // Give time for the keyboard to appear
+      setTimeout(() => {
+        // Scroll to the input to make sure it's visible
+        window.scrollTo(0, document.body.scrollHeight);
+        
+        // Adjust chat window position
+        if (chatWindowRef.current) {
+          chatWindowRef.current.style.bottom = '0';
+          chatWindowRef.current.style.height = '50vh';
+          
+          // Ensure the message list scrolls to bottom
+          messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
+
+  // Handle input blur state
+  const handleInputBlur = () => {
+    setIsInputFocused(false);
+    
+    // If on mobile, restore normal chat window position
+    if (isMobile && chatWindowRef.current) {
+      chatWindowRef.current.style.bottom = '0';
+      chatWindowRef.current.style.height = '80vh';
+    }
+  };
 
   // Only scroll to bottom when new messages are added
   useEffect(() => {
@@ -56,6 +118,9 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
 
   // Function to lock body scroll
   const lockBodyScroll = () => {
+    // Don't lock scrolling if input is focused on mobile (allows keyboard to show properly)
+    if (isMobile && isInputFocused) return;
+    
     const scrollY = window.scrollY;
     setBodyScrollY(scrollY);
     
@@ -85,7 +150,16 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
   const handleChatFocus = () => {
     if (!isChatFocused) {
       setIsChatFocused(true);
-      lockBodyScroll();
+      
+      // Don't lock scrolling if on mobile, to allow for keyboard to appear
+      if (!isMobile) {
+        lockBodyScroll();
+      }
+      
+      // Focus the input field when chat is opened
+      setTimeout(() => {
+        messageInputRef.current?.focus();
+      }, 100);
     }
   };
 
@@ -100,9 +174,9 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
     }
   };
 
-  // Lock body scroll when chat is focused
+  // Lock body scroll when chat is focused (except on mobile with focused input)
   useEffect(() => {
-    if (isChatFocused) {
+    if (isChatFocused && !(isMobile && isInputFocused)) {
       lockBodyScroll();
     } else {
       unlockBodyScroll();
@@ -112,7 +186,7 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
     return () => {
       unlockBodyScroll();
     };
-  }, [isChatFocused]);
+  }, [isChatFocused, isMobile, isInputFocused]);
   
   // Only scroll when initially opening with no history
   useEffect(() => {
@@ -133,18 +207,42 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
     e.stopPropagation();
   };
 
+  // Function to focus the message input, especially useful on touch devices
+  const focusMessageInput = () => {
+    messageInputRef.current?.focus();
+    handleInputFocus();
+  };
+
   const handleSendMessage = (message: string) => {
     if (message.trim()) {
       addMessage(message);
     }
   };
 
+  // Handle tapping on the welcome message to focus input
+  const handleWelcomeMessageTap = (e: React.MouseEvent | React.TouchEvent) => {
+    e.stopPropagation();
+    focusMessageInput();
+  };
+
+  // Create a custom class based on input focus state for mobile
+  const chatWindowClasses = `
+    fixed inset-x-0 bottom-0 sm:absolute sm:bottom-16 sm:right-0 sm:left-auto 
+    bg-background border-t sm:border border-border sm:rounded-lg 
+    shadow-xl overflow-hidden z-[9999] flex flex-col w-full 
+    sm:w-[380px] sm:max-w-[95vw] 
+    ${isMobile ? (isInputFocused ? 'h-[50vh]' : 'h-[80vh]') : 'h-[80vh] sm:h-[520px]'} 
+    max-h-[90vh] sm:max-h-[600px]
+    ${isMobile && isInputFocused ? 'keyboard-visible' : ''}
+  `;
+
   return (
     <>
       <motion.div
+        ref={chatWindowRef}
         key="chat-window"
         data-chat-window
-        className="fixed inset-x-0 bottom-0 sm:absolute sm:bottom-16 sm:right-0 sm:left-auto bg-background border-t sm:border border-border sm:rounded-lg shadow-xl overflow-hidden z-[9999] flex flex-col w-full sm:w-[380px] sm:max-w-[95vw] h-[80vh] sm:h-[520px] max-h-[90vh] sm:max-h-[600px]"
+        className={chatWindowClasses}
         initial={{ y: "100%", opacity: 1 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: "100%", opacity: 1 }}
@@ -206,7 +304,11 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
           onClick={(e) => e.stopPropagation()}
         >
           {messages.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full text-center text-muted-foreground">
+            <div 
+              className="flex flex-col items-center justify-center h-full text-center text-muted-foreground cursor-pointer"
+              onClick={handleWelcomeMessageTap}
+              onTouchStart={handleWelcomeMessageTap}
+            >
               <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-5">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
@@ -225,7 +327,13 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
         </div>
 
         <div className="p-3.5 border-t border-border bg-background">
-          <MessageInput onSendMessage={handleSendMessage} isLoading={isLoading} />
+          <MessageInput 
+            ref={messageInputRef}
+            onSendMessage={handleSendMessage} 
+            isLoading={isLoading} 
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur}
+          />
         </div>
       </motion.div>
       
