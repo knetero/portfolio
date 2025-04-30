@@ -49,7 +49,7 @@ function getSecurityResponse(): string {
 }
 
 // Check if the error is a rate limit error
-function isRateLimitError(response: Response, errorData: any): boolean {
+function isRateLimitError(response: Response, errorData: { error?: { message?: string }; message?: string }): boolean {
     // Check HTTP status code (429 is "Too Many Requests")
     if (response.status === 429) {
         return true;

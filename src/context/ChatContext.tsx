@@ -44,7 +44,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
       try {
         const parsedMessages = JSON.parse(savedMessages);
         // Convert string dates back to Date objects
-        const messagesWithDates = parsedMessages.map((msg: any) => ({
+        const messagesWithDates = parsedMessages.map((msg: { id: string; role: string; content: string; createdAt: string }) => ({
           ...msg,
           createdAt: new Date(msg.createdAt)
         }));
