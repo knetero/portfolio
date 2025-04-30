@@ -144,11 +144,15 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
       <motion.div
         key="chat-window"
         data-chat-window
-        className="absolute bottom-16 right-0 bg-background border border-border rounded-lg shadow-xl overflow-hidden z-40 flex flex-col w-[380px] max-w-[95vw] h-[520px] max-h-[80vh] sm:max-h-[600px]"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 20 }}
-        transition={{ duration: 0.2 }}
+        className="fixed inset-x-0 bottom-0 sm:absolute sm:bottom-16 sm:right-0 sm:left-auto bg-background border-t sm:border border-border sm:rounded-lg shadow-xl overflow-hidden z-[9999] flex flex-col w-full sm:w-[380px] sm:max-w-[95vw] h-[80vh] sm:h-[520px] max-h-[90vh] sm:max-h-[600px]"
+        initial={{ y: "100%", opacity: 1 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: "100%", opacity: 1 }}
+        transition={{ 
+          type: "spring", 
+          damping: 30, 
+          stiffness: 400
+        }}
         onClick={handleChatFocus}
       >
         <div className="flex items-center justify-between py-3 px-4 border-b border-border bg-muted">

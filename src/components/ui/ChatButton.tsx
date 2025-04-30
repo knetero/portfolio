@@ -74,7 +74,7 @@ export default function ChatButton() {
   }, [isOpen]);
 
   return (
-    <div id="chat-button-container" className="chat-button-fixed" ref={chatRef}>
+    <div id="chat-button-container" className="fixed bottom-4 right-4 z-[9998]" ref={chatRef}>
       <motion.button
         className="w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl"
         whileHover={{ scale: 1.05 }}
