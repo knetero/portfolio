@@ -83,7 +83,7 @@ const ProjectModal = ({ item }) => {
       document.body.setAttribute("data-lenis-prevent", "true");
 
       // Pause Lenis smooth scroll if available
-      // @ts-expect-error
+      // @ts-expect-error - Using global Lenis instance exposed for modal control
       window.__lenis?.stop?.();
     } else {
       // Resume scroll
@@ -93,7 +93,7 @@ const ProjectModal = ({ item }) => {
       document.body.removeAttribute("data-scroll-locked");
       document.body.removeAttribute("data-lenis-prevent");
 
-      // @ts-expect-error
+      // @ts-expect-error - Using global Lenis instance exposed for modal control
       window.__lenis?.start?.();
     }
 
@@ -104,7 +104,7 @@ const ProjectModal = ({ item }) => {
       document.body.removeAttribute("data-scroll-locked");
       document.body.removeAttribute("data-lenis-prevent");
 
-      // @ts-expect-error
+      // @ts-expect-error - Using global Lenis instance exposed for modal control
       window.__lenis?.start?.();
     };
   }, [isOpen]);

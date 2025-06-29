@@ -34,7 +34,7 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
         }
 
         // Expose lenis globally for other components (e.g., modals) to pause/resume scrolling
-        // @ts-expect-error
+        // @ts-expect-error - Adding custom property to window object for global Lenis access
         window.__lenis = lenisRef.current;
 
         lenisRef.current.on('scroll', onScroll);
@@ -48,7 +48,7 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
 
         return () => {
             lenisRef.current?.destroy();
-            // @ts-expect-error
+            // @ts-expect-error - Removing custom property from window object
             delete window.__lenis;
         };
     }, []);
