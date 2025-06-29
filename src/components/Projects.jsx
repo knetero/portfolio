@@ -83,7 +83,7 @@ const ProjectModal = ({ item }) => {
       document.body.setAttribute("data-lenis-prevent", "true");
 
       // Pause Lenis smooth scroll if available
-      // @ts-ignore
+      // @ts-expect-error
       window.__lenis?.stop?.();
     } else {
       // Resume scroll
@@ -93,7 +93,7 @@ const ProjectModal = ({ item }) => {
       document.body.removeAttribute("data-scroll-locked");
       document.body.removeAttribute("data-lenis-prevent");
 
-      // @ts-ignore
+      // @ts-expect-error
       window.__lenis?.start?.();
     }
 
@@ -104,7 +104,7 @@ const ProjectModal = ({ item }) => {
       document.body.removeAttribute("data-scroll-locked");
       document.body.removeAttribute("data-lenis-prevent");
 
-      // @ts-ignore
+      // @ts-expect-error
       window.__lenis?.start?.();
     };
   }, [isOpen]);
@@ -120,7 +120,7 @@ const ProjectModal = ({ item }) => {
       <AnimatePresence>
         {isOpen && (
           <DialogContent
-            className="max-w-[95vw] xs:max-w-[90vw] sm:max-w-[600px] max-h-[90vh] w-full p-0 overflow-y-auto scrollbar-hide bg-neutral-900 text-neutral-100 border border-neutral-800"
+            className="max-w-[95vw] xs:max-w-[90vw] sm:max-w-[600px] md:max-w-[700px] lg:max-w-[800px] max-h-[90vh] w-full p-0 overflow-y-auto md:overflow-hidden scrollbar-hide bg-neutral-900 text-neutral-100 border border-neutral-800"
             forceMount
           >
             <motion.div
@@ -128,38 +128,39 @@ const ProjectModal = ({ item }) => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.3 }}
+              className="flex flex-col h-full"
             >
-              <div className="relative w-full h-40 xs:h-48 sm:h-60 md:h-72">
+              <div className="relative w-full h-32 xs:h-40 sm:h-48 md:h-52">
                 <Image
                   src={item.header.props.src}
                   alt={item.header.props.alt}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 640px) 95vw, (max-width: 768px) 90vw, 600px"
+                  sizes="(max-width: 640px) 95vw, (max-width: 768px) 90vw, 800px"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 to-transparent" />
               </div>
-              <DialogHeader className="px-4 py-5 sm:px-6 md:p-7">
-                <DialogTitle className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
+              <DialogHeader className="px-5 py-4 sm:px-6 md:px-8">
+                <DialogTitle className="text-xl sm:text-2xl font-bold text-white flex items-center gap-3 mb-2">
                   {item.icon}
                   {item.title}
                 </DialogTitle>
-                <DialogDescription className="text-sm sm:text-base text-neutral-400 mt-2">
+                <DialogDescription className="text-sm sm:text-base text-neutral-400 mt-1">
                   {item.description}
                 </DialogDescription>
               </DialogHeader>
-              <div className="px-4 py-2 sm:px-6 md:px-6">
-                <div className="mb-5">
-                  <h4 className="text-base sm:text-lg font-semibold mb-2 text-white">Project Details:</h4>
-                  <p className="text-sm sm:text-base text-neutral-300">{item.details}</p>
+              <div className="px-5 sm:px-6 md:px-8 flex-1 flex flex-col md:flex-row md:gap-10 pb-4">
+                <div className="md:flex-1 mb-4 md:mb-0">
+                  <h4 className="text-base sm:text-lg font-semibold mb-3 text-white">Project Details:</h4>
+                  <p className="text-sm sm:text-base text-neutral-300 line-clamp-4 md:line-clamp-none">{item.details}</p>
                 </div>
-                <div>
-                  <h4 className="text-base sm:text-lg font-semibold mb-2 text-white">Technologies Used:</h4>
-                  <ul className="flex flex-wrap gap-1.5 sm:gap-2">
+                <div className="mt-5 md:mt-0 md:flex-1">
+                  <h4 className="text-base sm:text-lg font-semibold mb-3 text-white">Technologies Used:</h4>
+                  <ul className="flex flex-wrap gap-2">
                     {item.technologies.map((tech, index) => (
                       <motion.li
                         key={index}
-                        className="bg-neutral-800 rounded-full px-2 sm:px-3 py-1 text-xs sm:text-sm text-neutral-300"
+                        className="bg-neutral-800 rounded-full px-3 py-1.5 text-xs sm:text-sm text-neutral-300"
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.2, delay: index * 0.05 }}
@@ -170,7 +171,7 @@ const ProjectModal = ({ item }) => {
                   </ul>
                 </div>
               </div>
-              <div className="p-4 sm:p-6 mt-4 bg-neutral-800 flex flex-col xs:flex-row gap-2">
+              <div className="p-5 sm:p-6 mt-auto bg-neutral-800 flex flex-col xs:flex-row gap-3">
                 {item.link && (
                   <Button
                     onClick={() => window.open(item.link, '_blank')}
