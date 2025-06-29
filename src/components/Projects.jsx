@@ -13,7 +13,7 @@ import {
   IconUser,
   IconHaze,
 } from "@tabler/icons-react"
-import { ArrowUpRight} from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 import Image from "next/image"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
@@ -21,13 +21,14 @@ import { motion, AnimatePresence } from "framer-motion"
 
 export function Projects() {
   return (
-    <div className="flex flex-col items-center justify-center gap-4 sm:gap-12 w-auto mx-auto">
+    <div className="flex flex-col items-center justify-center gap-4 sm:gap-12 w-auto mx-auto py-10">
       <h2 className="bg-clip-text text-transparent text-center bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans py-4 md:py-6 relative z-20 font-bold tracking-tight">
         Featured Projects
       </h2>
       <p className="bg-clip-text text-transparent text-center w-[95%] bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-lg sm:text-2xl tracking-tight">
         Explore a curated selection of projects <br className="bg-clip-text text-transparent bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white"/> That showcase the power of creativity and innovation.
       </p>
+      
       <BentoGrid className="max-w-5xl sm:mx-auto mx-[20px]">
         {items.map((item, i) => (
           <BentoGridItem
@@ -41,7 +42,7 @@ export function Projects() {
             description={item.description}
             header={item.header}
             icon={item.icon}
-            className={`${i === 3 || i === 6 ? "md:col-span-2" : ""} bg-black`}
+            className={`${i === 3 || i === 6 ? "md:col-span-2" : ""} bg-black group transition-all ease-out duration-300 border border-neutral-900 hover:border-neutral-700`}
           />
         ))}
       </BentoGrid>
@@ -57,7 +58,9 @@ const ImageContainer = ({ src, alt }) => (
         alt={alt}
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        className="absolute top-0 left-0 w-full h-full object-cover "
+        className="absolute top-0 left-0 w-full h-full object-cover transition-all duration-400 ease-out group-hover:scale-105"
+        placeholder="blur"
+        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
       />
     </div>
   </div>
@@ -66,43 +69,97 @@ const ImageContainer = ({ src, alt }) => (
 const ProjectModal = ({ item }) => {
   const [isOpen, setIsOpen] = React.useState(false)
 
+  React.useEffect(() => {
+    const originalHtmlOverflow = document.documentElement.style.overflow || "";
+    const originalBodyOverflow = document.body.style.overflow || "";
+
+    if (isOpen) {
+      // Prevent native scroll via CSS
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+
+      // Flag for Lenis / libraries that scroll is locked
+      document.body.setAttribute("data-scroll-locked", "1");
+      document.body.setAttribute("data-lenis-prevent", "true");
+
+      // Pause Lenis smooth scroll if available
+      // @ts-ignore
+      window.__lenis?.stop?.();
+    } else {
+      // Resume scroll
+      document.documentElement.style.overflow = originalHtmlOverflow;
+      document.body.style.overflow = originalBodyOverflow;
+
+      document.body.removeAttribute("data-scroll-locked");
+      document.body.removeAttribute("data-lenis-prevent");
+
+      // @ts-ignore
+      window.__lenis?.start?.();
+    }
+
+    return () => {
+      document.documentElement.style.overflow = originalHtmlOverflow;
+      document.body.style.overflow = originalBodyOverflow;
+
+      document.body.removeAttribute("data-scroll-locked");
+      document.body.removeAttribute("data-lenis-prevent");
+
+      // @ts-ignore
+      window.__lenis?.start?.();
+    };
+  }, [isOpen]);
+
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="ghost" size="icon" className="text-neutral-300  transition-colors">
+        <Button variant="ghost" size="icon" className="text-neutral-300 hover:text-white hover:bg-neutral-800 transition-colors">
           <ArrowUpRight className="h-4 w-4" />
           <span className="sr-only text-white">Learn more about {item.title}</span>
         </Button>
       </DialogTrigger>
       <AnimatePresence>
         {isOpen && (
-          <DialogContent className="max-w-full sm:max-w-[600px] h-[100%] sm:h-auto p-0 overflow-hidden bg-neutral-900 text-neutral-100 border border-neutral-800 " forceMount>
+          <DialogContent
+            className="max-w-[95vw] xs:max-w-[90vw] sm:max-w-[600px] max-h-[90vh] w-full p-0 overflow-y-auto scrollbar-hide bg-neutral-900 text-neutral-100 border border-neutral-800"
+            forceMount
+          >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.3 }}
             >
-              <DialogHeader className="sm:p-7 p-20 pb-0">
-                <DialogTitle className="text-2xl font-bold text-white">
+              <div className="relative w-full h-40 xs:h-48 sm:h-60 md:h-72">
+                <Image
+                  src={item.header.props.src}
+                  alt={item.header.props.alt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 95vw, (max-width: 768px) 90vw, 600px"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 to-transparent" />
+              </div>
+              <DialogHeader className="px-4 py-5 sm:px-6 md:p-7">
+                <DialogTitle className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
+                  {item.icon}
                   {item.title}
                 </DialogTitle>
-                <DialogDescription className="text-neutral-400 mt-2">
+                <DialogDescription className="text-sm sm:text-base text-neutral-400 mt-2">
                   {item.description}
                 </DialogDescription>
               </DialogHeader>
-              <div className="p-6">
-                <div className="mb-6">
-                  <h4 className="text-lg font-semibold mb-2 text-white ">Project Details:</h4>
-                  <p className="text-neutral-300">{item.details}</p>
+              <div className="px-4 py-2 sm:px-6 md:px-6">
+                <div className="mb-5">
+                  <h4 className="text-base sm:text-lg font-semibold mb-2 text-white">Project Details:</h4>
+                  <p className="text-sm sm:text-base text-neutral-300">{item.details}</p>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold mb-2 text-white">Technologies Used:</h4>
-                  <ul className="flex flex-wrap gap-2">
+                  <h4 className="text-base sm:text-lg font-semibold mb-2 text-white">Technologies Used:</h4>
+                  <ul className="flex flex-wrap gap-1.5 sm:gap-2">
                     {item.technologies.map((tech, index) => (
                       <motion.li
                         key={index}
-                        className="bg-neutral-800 rounded-full px-3 py-1 text-sm text-neutral-300"
+                        className="bg-neutral-800 rounded-full px-2 sm:px-3 py-1 text-xs sm:text-sm text-neutral-300"
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.2, delay: index * 0.05 }}
@@ -113,18 +170,18 @@ const ProjectModal = ({ item }) => {
                   </ul>
                 </div>
               </div>
-              <div className="p-6 sm:bg-neutral-800 flex gap-2">
+              <div className="p-4 sm:p-6 mt-4 bg-neutral-800 flex flex-col xs:flex-row gap-2">
                 {item.link && (
                   <Button
                     onClick={() => window.open(item.link, '_blank')}
-                    className="w-full bg-neutral-800 text-neutral-100 border border-neutral-700 hover:bg-neutral-700 hover:text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300"
+                    className="w-full bg-neutral-700 text-neutral-100 text-sm sm:text-base border border-neutral-600 hover:bg-neutral-600 hover:text-white font-semibold py-2 px-3 sm:px-4 rounded-lg transition-all duration-300"
                   >
                     View Project
                   </Button>
                 )}
                 <Button
                   onClick={() => setIsOpen(false)}
-                  className="w-full bg-white text-neutral-900 hover:bg-neutral-200 font-semibold py-2 px-4 rounded-lg transition-all duration-300"
+                  className="w-full bg-white text-neutral-900 text-sm sm:text-base hover:bg-neutral-200 font-semibold py-2 px-3 sm:px-4 rounded-lg transition-all duration-300"
                 >
                   Close
                 </Button>

@@ -33,6 +33,10 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
             // Handle scroll event if needed
         }
 
+        // Expose lenis globally for other components (e.g., modals) to pause/resume scrolling
+        // @ts-ignore
+        window.__lenis = lenisRef.current;
+
         lenisRef.current.on('scroll', onScroll);
 
         function raf(time: number) {
@@ -44,6 +48,8 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
 
         return () => {
             lenisRef.current?.destroy();
+            // @ts-ignore
+            delete window.__lenis;
         };
     }, []);
 

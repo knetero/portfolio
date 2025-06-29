@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import ResizableNavbar from "@/components/ResizableNavbar";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import SmoothScroll from "@/components/SmoothScroll";
 import { ChatProvider } from "@/context/ChatContext";
@@ -57,7 +57,7 @@ export default function RootLayout({
         <div className="absolute inset-0 bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
         <SmoothScroll>
           <ShootingStars className="shooting-stars" />
-          <Navbar />
+          <ResizableNavbar />
           <div className="pt-16 relative">
             {children}
           </div>
