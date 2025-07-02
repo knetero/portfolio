@@ -19,7 +19,7 @@ const smoothScroll = (e, target) => {
   if (e && e.preventDefault) {
     e.preventDefault()
   }
-  if (target === "resume") {
+  if (target === "resume" || (typeof target === 'string' && target.includes("AbdellahResume.pdf"))) {
     window.open("/AbdellahResume.pdf", "_blank")
   } else {
     const element = document.getElementById(target)

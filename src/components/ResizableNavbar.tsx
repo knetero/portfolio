@@ -21,7 +21,7 @@ const smoothScroll = (
   if (e && e.preventDefault) {
     e.preventDefault();
   }
-  if (target === "resume") {
+  if (target === "resume" || target.includes("AbdellahResume.pdf")) {
     window.open("/AbdellahResume.pdf", "_blank");
   } else {
     const el = document.getElementById(target);
