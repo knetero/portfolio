@@ -40,37 +40,37 @@ export default function About() {
         className="max-w-6xl mx-auto"
       >
         <div className="grid md:grid-cols-2 gap-12 items-start">
-          <div className="space-y-6">
-            <motion.h2 
+          <div className="space-y-8">
+            <motion.div
               initial={{ x: -20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="bg-clip-text text-transparent bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-bold tracking-tight"
+              className="space-y-2"
             >
-              About Me
-            </motion.h2>
+              <span className="text-sm font-medium text-neutral-400 tracking-widest uppercase">Who I am</span>
+              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-bold tracking-tight text-white">
+                About Me
+              </h2>
+            </motion.div>
 
             <motion.div 
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-200 dark:to-white space-y-4 text-neutral-300 dark:text-neutral-400 font-light"
+              className="space-y-5 text-lg leading-relaxed font-light"
             >
-              <p>
-                Hey! I'm Abdellah, a developer focused on building modern web experiences. 
+              <p className="text-neutral-100">
+                Hey! I'm <span className="font-medium text-white">Abdellah</span>, a developer focused on building modern web experiences. 
                 I'm passionate about creating clean, efficient applications using Next.js 
                 and React. What started as curiosity about how websites work has grown into 
                 a deep interest in frontend development and user experience.
               </p>
-              <p>
+              <p className="text-neutral-200">
                 Recently, I developed{' '}
-                <Link href="#projects" onClick={(e) => smoothScroll(e, "projects")} className="relative text-white hover:underline font-medium">
+                <Link href="#projects" onClick={(e) => smoothScroll(e, "projects")} className="relative text-white font-medium group">
                   ft_transcendence
-                  <motion.span 
-                    className="absolute left-0 -bottom-1 w-full h-0.5 bg-white"
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.3 }}
+                  <motion.div 
+                    className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white group-hover:w-full transition-all duration-300 ease-out"
                   />
                 </Link>,{' '}
                 a real-time multiplayer ping pong platform built with Next.js and React. 
@@ -86,15 +86,16 @@ export default function About() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4 }}
+              className="pt-2"
             >
-              <h3 className="text-neutral-100 mb-3">Here are a few technologies I've been working with recently:</h3>
-              <ul className="grid grid-cols-2 gap-2 text-sm">
+              <h3 className="text-white font-medium text-lg mb-4 border-l-4 border-neutral-500 pl-3">Technologies I've been working with recently:</h3>
+              <ul className="grid grid-cols-2 gap-y-3 gap-x-4">
                 {technologies.map((tech, index) => (
                   <motion.li
                     key={tech.id}
-                    className="flex items-center space-x-2 font-bold"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    className="flex items-center space-x-2 font-medium"
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ 
                       duration: 0.3,
@@ -104,8 +105,8 @@ export default function About() {
                       damping: 20 
                     }}
                   >
-                    <span className="text-white">▹</span>
-                    <span>{tech.name}</span>
+                    <span className="text-white text-lg">▹</span>
+                    <span className="text-neutral-100">{tech.name}</span>
                   </motion.li>
                 ))}
               </ul>
@@ -124,11 +125,13 @@ export default function About() {
               <div className="relative z-10 w-full h-full rounded-lg overflow-hidden border-4 border-neutral-700 shadow-xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-neutral-800/30 to-neutral-900/30 mix-blend-overlay" />
                 <Image
-                  src="/Images/pic3.jpg"
+                  src="/Images/MYPIC.jpg"
                   alt="Profile"
                   width={500}
                   height={500}
-                  className="object-cover w-full h-full transition-all duration-300 transform group-hover:scale-105 grayscale-[50%] s group-hover:grayscale-0 "
+                  quality={100}
+                  priority
+                  className="object-cover w-full h-full transition-all duration-300 transform group-hover:scale-105 grayscale-[50%] group-hover:grayscale-0"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
