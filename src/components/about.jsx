@@ -69,7 +69,7 @@ export default function About() {
                 Recently, I developed{' '}
                 <Link href="#projects" onClick={(e) => smoothScroll(e, "projects")} className="relative text-white font-medium group">
                   ft_transcendence
-                  <motion.div 
+                  <motion.span 
                     className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white group-hover:w-full transition-all duration-300 ease-out"
                   />
                 </Link>,{' '}
@@ -117,27 +117,28 @@ export default function About() {
             initial={{ x: 20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="relative"
+            className="relative flex items-center justify-center md:justify-end"
           >
-            <div className="relative w-full max-w-[500px] mx-auto aspect-square group">
-              <div className="absolute inset-0 bg-gradient-to-br from-neutral-800 to-neutral-900 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform rotate-3" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-neutral-700 to-neutral-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -rotate-3" />
-              <div className="relative z-10 w-full h-full rounded-lg overflow-hidden border-4 border-neutral-700 shadow-xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-neutral-800/30 to-neutral-900/30 mix-blend-overlay" />
+            <div className="relative w-full max-w-[480px] group">
+              {/* Glow effect on hover */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-white/10 via-neutral-600/10 to-white/10 rounded-3xl blur-lg opacity-0 group-hover:opacity-75 transition duration-500" />
+              
+              {/* Main image card */}
+              <div className="relative aspect-square rounded-3xl overflow-hidden border border-white/10 bg-neutral-900/50 backdrop-blur-sm shadow-2xl">
                 <Image
-                  src="/Images/MYPIC.jpg"
-                  alt="Profile"
-                  width={500}
-                  height={500}
+                  src="/Images/MYPIC.png"
+                  alt="Abdellah - Web Developer"
+                  width={480}
+                  height={480}
                   quality={100}
                   priority
-                  className="object-cover w-full h-full transition-all duration-300 transform group-hover:scale-105 grayscale-[50%] group-hover:grayscale-0"
+                  className="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Subtle overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
             </div>
-            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-gradient-to-br from-neutral-700 to-neutral-800 rounded-full opacity-75 blur-xl " />
-            <div className="absolute -top-4 -left-4 w-32 h-32 bg-gradient-to-br from-neutral-800 to-neutral-900 rounded-full opacity-75 blur-xl" />
           </motion.div>
         </div>
       </motion.div>
