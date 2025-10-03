@@ -3,6 +3,7 @@
 import { motion} from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
+import { GlowingEffect } from "./ui/glowing-effect"
 
 
 const smoothScroll = (e, target) => {
@@ -119,24 +120,36 @@ export default function About() {
             transition={{ delay: 0.5 }}
             className="relative flex items-center justify-center md:justify-end"
           >
-            <div className="relative w-full max-w-[480px] group">
-              {/* Glow effect on hover */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-white/10 via-neutral-600/10 to-white/10 rounded-3xl blur-lg opacity-0 group-hover:opacity-75 transition duration-500" />
-              
-              {/* Main image card */}
-              <div className="relative aspect-square rounded-3xl overflow-hidden border border-white/10 bg-neutral-900/50 backdrop-blur-sm shadow-2xl">
-                <Image
-                  src="/Images/MYPIC.png"
-                  alt="Abdellah - Web Developer"
-                  width={480}
-                  height={480}
-                  quality={100}
-                  priority
-                  className="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-105"
+            <div className="relative w-full max-w-[480px] group p-1">
+              {/* Main image card with glowing effect container */}
+              <div className="relative aspect-square rounded-3xl bg-neutral-900/50 backdrop-blur-sm shadow-2xl">
+                {/* Glowing Effect */}
+                <GlowingEffect
+                  disabled={false}
+                  blur={6}
+                  spread={50}
+                  proximity={300}
+                  inactiveZone={0.2}
+                  variant="default"
+                  borderWidth={2}
+                  movementDuration={0.3}
                 />
                 
-                {/* Subtle overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* Image container with overflow hidden */}
+                <div className="absolute inset-0 rounded-3xl overflow-hidden border border-white/10">
+                  <Image
+                    src="/Images/MYPIC.png"
+                    alt="Abdellah - Web Developer"
+                    width={480}
+                    height={480}
+                    quality={100}
+                    priority
+                    className="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-105"
+                  />
+                  
+                  {/* Subtle overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                </div>
               </div>
             </div>
           </motion.div>

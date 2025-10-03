@@ -50,9 +50,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="custom-scrollbar">
+    <html lang="en" className="custom-scrollbar overflow-x-hidden">
       <body
-        className={`${inter.className} ${geistSans.variable} ${geistMono.variable} antialiased bg-dot-white/[0.2] relative`}
+        className={`${inter.className} ${geistSans.variable} ${geistMono.variable} antialiased bg-dot-white/[0.2] relative overflow-x-hidden overflow-y-hidden`}
       >
         <div className="absolute inset-0 bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
         <SmoothScroll>

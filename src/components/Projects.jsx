@@ -34,8 +34,16 @@ export function Projects() {
           <BentoGridItem
             key={i}
             title={
-              <div className="flex items-center gap-2">
-                {item.title}
+              <div className="flex items-center justify-between w-full gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
+                  {item.category && (
+                    <span className="relative px-2.5 py-1 text-[10px] font-semibold bg-gradient-to-r from-neutral-800 to-neutral-700 text-neutral-200 rounded-md border border-neutral-600/50 shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md hover:border-neutral-500 group-hover:animate-pulse">
+                      <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/5 to-white/0 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+                      <span className="relative z-10">{item.category}</span>
+                    </span>
+                  )}
+                  <span>{item.title}</span>
+                </div>
                 <ProjectModal item={item} />
               </div>
             }
@@ -198,6 +206,7 @@ const ProjectModal = ({ item }) => {
 const items = [
   {
     title: "TACTUNE",
+    category: "Web App",
     description: "A dynamic sonic sound branding agency site featuring interactive project gallery and client request form.",
     header: <ImageContainer src="/Images/Tactune.png" alt="TACTUNE - Sound Branding Agency" />,
     icon: <IconMusic className="h-4 w-4 text-white" />,
@@ -207,6 +216,7 @@ const items = [
   },
   {
     title: "WATCHWISE - IMDB CLONE",
+    category: "Full Stack",
     description: "A responsive, modern UI IMDb clone using Next.js and Tailwind CSS, fetching meta-data from TMDB API for trending movies/TV shows and user search results.",
     header: <ImageContainer src="/Images/watchWise.jpg" alt="WATCHWISE - IMDB CLONE" />,
     icon: <IconMovie className="h-4 w-4 text-white" />,
@@ -216,24 +226,27 @@ const items = [
   },
   {
     title: "Angular Portfolio",
+    category: "Frontend",
     description: "A responsive, modern portfolio website built with Angular and Tailwind CSS, showcasing projects and skills.",
     header: <ImageContainer src="/Images/angularPortfolio.png" alt="Angular Portfolio" />,
     icon: <IconUser className="h-4 w-4 text-white" />,
-    details: "This project is a responsive, modern portfolio website built with Angular and Tailwind CSS. It showcases projects and skills, providing a clean and professional online presence. Through this project, I practiced Angular fundamentals including components, services,and state management.",
+    details: "This project is a responsive, modern portfolio website built with Angular and Tailwind CSS. It showcases projects and skills, providing a clean and professional online presence. Through this project, I practiced Angular fundamentals including components, services, and state management.",
     technologies: ["Angular", "Tailwind CSS", "Responsive Design", "Web Development"],
     link: "https://angular-portfolio-flame-delta.vercel.app/",
   },
   {
     title: "Online PingPong Game",
+    category: "Full Stack",
     description: "A website for playing Ping Pong online, featuring chat and friends functionality.",
     header: <ImageContainer src="/Images/pong2.png" alt="Ping Pong Game" />,
     icon: <IconPingPong className="h-4 w-4 text-white" />,
     details: "This project is a full-stack web application that allows users to play Pong online in real-time. It features user authentication, matchmaking, live gameplay, and a chat system for players to communicate.",
-    technologies: ["Next.Js", "React.Js", "Javascipt" , "WebSocket", "HTML5 Canvas", "Tailwind CSS", "Database Management"],
+    technologies: ["Next.js", "React.js", "JavaScript" , "WebSocket", "HTML5 Canvas", "Tailwind CSS", "Database Management"],
     link: "https://github.com/knetero/PingPong",
   },
   {
     title: "Angular Weather App",
+    category: "Frontend",
     description: "A weather app that allows users to search for weather information for a specific city.",
     header: <ImageContainer src="/Images/weatherapp.png" alt="Weather App" />,
     icon: <IconHaze className="h-4 w-4 text-white" />,
@@ -243,6 +256,7 @@ const items = [
   },
   {
     title: "Minishell",
+    category: "Systems",
     description: "An implementation of Bash in C, providing a lightweight shell environment.",
     header: <ImageContainer src="/Images/minishell.png" alt="Minishell" />,
     icon: <IconAlignBoxLeftBottom className="h-4 w-4 text-white" />,
@@ -252,6 +266,7 @@ const items = [
   },
   {
     title: "Internet Relay Chat",
+    category: "Backend",
     description: "An implementation of Internet Relay Chat using C++.",
     header: <ImageContainer src="/Images/irc.jpg" alt="Internet Relay Chat" />,
     icon: <IconMessage className="h-4 w-4 text-white" />,
@@ -261,6 +276,7 @@ const items = [
   },
   {
     title: "Cub3d Game",
+    category: "Game Dev",
     description: "An engaging 3D game showcasing innovative design and gameplay.",
     header: <ImageContainer src="/Images/cub3d.png" alt="Cub3d Game" />,
     icon: <IconDeviceNintendo className="h-4 w-4 text-white" />,
@@ -271,6 +287,7 @@ const items = [
  
   {
     title: "Inception",
+    category: "DevOps",
     description: "A project exploring the fundamentals of containerization.",
     header: <ImageContainer src="/Images/Docker.png" alt="Inception" />,
     icon: <IconBrandDocker className="h-4 w-4 text-white" />,

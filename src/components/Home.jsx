@@ -1,6 +1,7 @@
 'use client';
 import React from "react";
 import { BackgroundLines } from "@/components/ui/background-lines";
+import { Spotlight } from "@/components/ui/spotlight-new";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { usePathname } from 'next/navigation'
@@ -36,6 +37,7 @@ export function Home() {
 
   return (
     <BackgroundLines className="flex flex-col items-center justify-center w-full min-h-screen p-4 md:p-8">
+      <Spotlight />
       <div className="max-w-4xl mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
