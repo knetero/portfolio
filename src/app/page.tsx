@@ -1,13 +1,32 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import { Home } from "@/components/Home"
-import { Projects } from "@/components/Projects"
 import { motion, useScroll, useTransform } from "framer-motion"
-import About from "@/components/about"
-import { WobbleCardDemo } from "@/components/woobleCard"
-import LogoCarousel from "@/components/logoCarousel"
-import InfiniteSlider from "@/components/InfiniteSlider"
+
+// Dynamically import components below the fold for better initial load
+const Projects = dynamic(() => import("@/components/Projects").then(mod => ({ default: mod.Projects })), {
+  loading: () => <div className="w-full py-8 md:py-16 lg:py-24 flex items-center justify-center"><div className="animate-pulse text-neutral-400">Loading...</div></div>,
+});
+
+const About = dynamic(() => import("@/components/about"), {
+  loading: () => <div className="w-full py-8 md:py-16 lg:py-24 flex items-center justify-center"><div className="animate-pulse text-neutral-400">Loading...</div></div>,
+});
+
+const InfiniteSlider = dynamic(() => import("@/components/InfiniteSlider"), {
+  ssr: false,
+  loading: () => null,
+});
+
+const LogoCarousel = dynamic(() => import("@/components/logoCarousel"), {
+  ssr: false,
+  loading: () => null,
+});
+
+const WobbleCardDemo = dynamic(() => import("@/components/woobleCard").then(mod => ({ default: mod.WobbleCardDemo })), {
+  loading: () => <div className="w-full py-8 flex items-center justify-center"><div className="animate-pulse text-neutral-400">Loading...</div></div>,
+});
 
 export default function HomePage() {
   const [isMobile, setIsMobile] = useState(false)
@@ -15,12 +34,23 @@ export default function HomePage() {
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768) // Adjust this breakpoint as needed
+      setIsMobile(window.innerWidth < 768)
     }
 
     checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
+    
+    // Debounce resize event for better performance
+    let resizeTimer: NodeJS.Timeout
+    const debouncedResize = () => {
+      clearTimeout(resizeTimer)
+      resizeTimer = setTimeout(checkMobile, 150)
+    }
+
+    window.addEventListener('resize', debouncedResize, { passive: true })
+    return () => {
+      clearTimeout(resizeTimer)
+      window.removeEventListener('resize', debouncedResize)
+    }
   }, [])
 
   const createScrollEffect = (start: number, end: number) => {

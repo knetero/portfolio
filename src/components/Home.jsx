@@ -92,7 +92,7 @@ export function Home() {
             onClick={(e) => smoothScroll(e, "projects")}
           >
             Explore my work
-            <Image src="/Images/arrow.svg" alt="arrow" width={8} height={8} />
+            <Image src="/Images/arrow.svg" alt="arrow" width={8} height={8} priority />
           </motion.button>
         </motion.div>
       </div>

@@ -85,7 +85,8 @@ const LogoCarousel = () => {
                   width={80} 
                   height={50} 
                   className="h-16 w-auto"
-                  loading={index < logos.length ? "eager" : "lazy"}
+                  loading="lazy"
+                  quality={85}
                 />
               </div>
             ))}

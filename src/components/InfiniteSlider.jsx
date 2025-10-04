@@ -31,7 +31,7 @@ const InfiniteSlider = () => {
 
   useEffect(() => {
     const isMobile = window.innerWidth <= 768
-    const duration = isMobile ? 10 : 40
+    const duration = isMobile ? 15 : 40
 
     if (inView) {
       controls.start({

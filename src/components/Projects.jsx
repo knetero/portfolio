@@ -65,6 +65,8 @@ const ImageContainer = ({ src, alt }) => (
         src={src}
         alt={alt}
         fill
+        loading="lazy"
+        quality={75}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="absolute top-0 left-0 w-full h-full object-cover transition-all duration-400 ease-out group-hover:scale-105"
         placeholder="blur"
@@ -143,6 +145,8 @@ const ProjectModal = ({ item }) => {
                   src={item.header.props.src}
                   alt={item.header.props.alt}
                   fill
+                  loading="lazy"
+                  quality={75}
                   className="object-cover"
                   sizes="(max-width: 640px) 95vw, (max-width: 768px) 90vw, 800px"
                 />

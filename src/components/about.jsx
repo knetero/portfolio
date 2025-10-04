@@ -142,8 +142,9 @@ export default function About() {
                     alt="Abdellah - Web Developer"
                     width={480}
                     height={480}
-                    quality={100}
-                    priority
+                    quality={75}
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, 480px"
                     className="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-105"
                   />
                   
