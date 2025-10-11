@@ -83,6 +83,7 @@ export default function RootLayout({
     <html lang="en" className="custom-scrollbar overflow-x-hidden">
       <head>
         {/* Preconnect to speed up font loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* DNS prefetch for any external resources */}
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />

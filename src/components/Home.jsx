@@ -87,12 +87,24 @@ export function Home() {
               duration: 0.5,
               ease: "easeInOut"
             }}
-            className=" flex flex-row items-center gap-2 justify-center bg-white text-black w-full sm:w-auto
-            h-12 px-6 text-base font-medium cursor-pointer hover:bg-gray-200 transition-colors duration-200 rounded-full shadow shadow-white/30 shadow-lg"
+            className="flex flex-row items-center gap-2 justify-center bg-white/10 text-white w-full sm:w-auto h-12 px-6 text-base font-semibold cursor-pointer hover:bg-white/20 hover:scale-105 transition-all duration-300 rounded-full border border-white/50"
+            style={{
+              backdropFilter: "brightness(1.1) blur(10px)",
+              WebkitBackdropFilter: "brightness(1.1) blur(10px)",
+              boxShadow: "inset 6px 6px 0px -6px rgba(255, 255, 255, 0.7), inset 0 0 8px 1px rgba(255, 255, 255, 0.7)",
+              filter: "drop-shadow(-4px -5px 20px rgba(0, 0, 0, 0.3))",
+            }}
             onClick={(e) => smoothScroll(e, "projects")}
           >
             Explore my work
-            <Image src="/Images/arrow.svg" alt="arrow" width={8} height={8} priority />
+            <Image 
+              src="/Images/arrow.svg" 
+              alt="arrow" 
+              width={8} 
+              height={8} 
+              priority 
+              className="brightness-0 invert"
+            />
           </motion.button>
         </motion.div>
       </div>
