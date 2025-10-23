@@ -12,6 +12,7 @@ import {
   IconMusic,
   IconUser,
   IconHaze,
+  IconBriefcase,
 } from "@tabler/icons-react"
 import { ArrowUpRight } from "lucide-react"
 import Image from "next/image"
@@ -130,7 +131,7 @@ const ProjectModal = ({ item }) => {
       <AnimatePresence>
         {isOpen && (
           <DialogContent
-            className="max-w-[95vw] xs:max-w-[90vw] sm:max-w-[600px] md:max-w-[700px] lg:max-w-[800px] max-h-[90vh] w-full p-0 overflow-y-auto md:overflow-hidden scrollbar-hide bg-neutral-900 text-neutral-100 border border-neutral-800"
+            className="max-w-[95vw] xs:max-w-[90vw] sm:max-w-[600px] md:max-w-[700px] lg:max-w-[800px] max-h-[90vh] w-full p-0 overflow-hidden bg-neutral-900 text-neutral-100 border border-neutral-800"
             forceMount
           >
             <motion.div
@@ -138,7 +139,7 @@ const ProjectModal = ({ item }) => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.3 }}
-              className="flex flex-col h-full"
+              className="flex flex-col max-h-[90vh]"
             >
               <div className="relative w-full h-32 xs:h-40 sm:h-48 md:h-52">
                 <Image
@@ -150,9 +151,10 @@ const ProjectModal = ({ item }) => {
                   className="object-cover"
                   sizes="(max-width: 640px) 95vw, (max-width: 768px) 90vw, 800px"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-neutral-900 via-neutral-900/90 via-30% to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-neutral-900 to-transparent" />
               </div>
-              <DialogHeader className="px-5 py-4 sm:px-6 md:px-8">
+              <DialogHeader className="px-5 pt-8 pb-4 sm:px-6 md:px-8 -mt-16 relative z-10">
                 <DialogTitle className="text-xl sm:text-2xl font-bold text-white flex items-center gap-3 mb-2">
                   {item.icon}
                   {item.title}
@@ -161,18 +163,51 @@ const ProjectModal = ({ item }) => {
                   {item.description}
                 </DialogDescription>
               </DialogHeader>
-              <div className="px-5 sm:px-6 md:px-8 flex-1 flex flex-col md:flex-row md:gap-10 pb-4">
-                <div className="md:flex-1 mb-4 md:mb-0">
-                  <h4 className="text-base sm:text-lg font-semibold mb-3 text-white">Project Details:</h4>
-                  <p className="text-sm sm:text-base text-neutral-300 line-clamp-4 md:line-clamp-none">{item.details}</p>
-                </div>
-                <div className="mt-5 md:mt-0 md:flex-1">
-                  <h4 className="text-base sm:text-lg font-semibold mb-3 text-white">Technologies Used:</h4>
+              <div className="px-5 sm:px-6 md:px-8 flex-1 pb-20 space-y-6 overflow-y-auto scrollbar-hide relative">
+                {/* Project Overview */}
+                {item.overview && (
+                  <div>
+                    <h4 className="text-base sm:text-lg font-semibold mb-3 text-white">Overview</h4>
+                    <p className="text-sm sm:text-base text-neutral-300 leading-relaxed">{item.overview}</p>
+                  </div>
+                )}
+                
+                {/* Key Achievements */}
+                {item.highlights && (
+                  <div>
+                    <h4 className="text-base sm:text-lg font-semibold mb-3 text-white">Key Achievements</h4>
+                    <ul className="space-y-3">
+                      {item.highlights.map((highlight, index) => (
+                        <motion.li
+                          key={index}
+                          className="text-sm sm:text-base text-neutral-300 leading-relaxed pl-0"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3, delay: index * 0.1 }}
+                        >
+                          {highlight}
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Legacy details for projects without highlights */}
+                {!item.highlights && item.details && (
+                  <div>
+                    <h4 className="text-base sm:text-lg font-semibold mb-3 text-white">Project Details</h4>
+                    <p className="text-sm sm:text-base text-neutral-300 leading-relaxed">{item.details}</p>
+                  </div>
+                )}
+
+                {/* Technologies Used */}
+                <div>
+                  <h4 className="text-base sm:text-lg font-semibold mb-3 text-white">Technologies Used</h4>
                   <ul className="flex flex-wrap gap-2">
                     {item.technologies.map((tech, index) => (
                       <motion.li
                         key={index}
-                        className="bg-neutral-800 rounded-full px-3 py-1.5 text-xs sm:text-sm text-neutral-300"
+                        className="bg-neutral-800 rounded-full px-3 py-1.5 text-xs sm:text-sm text-neutral-300 border border-neutral-700"
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.2, delay: index * 0.05 }}
@@ -209,6 +244,22 @@ const ProjectModal = ({ item }) => {
 
 const items = [
   {
+    title: "ONEDUSTRY TECHNOLOGIES",
+    category: "Internship",
+    description: "6-month frontend internship contributing to an ongoing restaurant marketplace platform with real-time features and interactive mapping.",
+    header: <ImageContainer src="/Images/Onedustry.png" alt="ONEDUSTRY TECHNOLOGIES - Restaurant Marketplace" />,
+    icon: <IconBriefcase className="h-4 w-4 text-white" />,
+    overview: "During my 6-month frontend internship at ONEDUSTRY TECHNOLOGIES, I contributed to an ongoing restaurant marketplace project where users can discover nearby eateries, browse menus, and place orders seamlessly, and much more...",
+    highlights: [
+      "Integrated Google Maps API for interactive restaurant location displays and availability zones",
+      "Built dynamic menu and meal-detail views with real-time data fetching from RESTful APIs",
+      "Implemented streamlined ordering workflow with cart management and order submission",
+      "Collaborated with designers and backend engineers to ensure seamless API integration and UX consistency across desktop and mobile devices"
+    ],
+    technologies: ["React", "Next.js", "Google Maps API", "RESTful APIs", "CSS", "Responsive Design", "Performance Optimization", "Accessibility"],
+    link: null,
+  },
+  {
     title: "TACTUNE",
     category: "Web App",
     description: "A dynamic sonic sound branding agency site featuring interactive project gallery and client request form.",
@@ -219,16 +270,6 @@ const items = [
     link: "https://music-mauve-one.vercel.app/",
   },
   {
-    title: "WATCHWISE - IMDB CLONE",
-    category: "Full Stack",
-    description: "A responsive, modern UI IMDb clone using Next.js and Tailwind CSS, fetching meta-data from TMDB API for trending movies/TV shows and user search results.",
-    header: <ImageContainer src="/Images/watchWise.jpg" alt="WATCHWISE - IMDB CLONE" />,
-    icon: <IconMovie className="h-4 w-4 text-white" />,
-    details: "This project implements user authentication via NextAuth.js, allowing users to create watchlists with persistent storage. Features include real-time search functionality, custom movie/tv show collections, and responsive design for optimal viewing on all devices.",
-    technologies: ["Next.js", "Tailwind CSS", "NextAuth.js", "TMDB API"],
-    link: "https://watchwise-one.vercel.app/",
-  },
-  {
     title: "Angular Portfolio",
     category: "Frontend",
     description: "A responsive, modern portfolio website built with Angular and Tailwind CSS, showcasing projects and skills.",
@@ -237,6 +278,16 @@ const items = [
     details: "This project is a responsive, modern portfolio website built with Angular and Tailwind CSS. It showcases projects and skills, providing a clean and professional online presence. Through this project, I practiced Angular fundamentals including components, services, and state management.",
     technologies: ["Angular", "Tailwind CSS", "Responsive Design", "Web Development"],
     link: "https://angular-portfolio-flame-delta.vercel.app/",
+  },
+  {
+    title: "WATCHWISE - IMDB CLONE",
+    category: "Full Stack",
+    description: "A responsive, modern UI IMDb clone using Next.js and Tailwind CSS, fetching meta-data from TMDB API for trending movies/TV shows and user search results.",
+    header: <ImageContainer src="/Images/watchWise.jpg" alt="WATCHWISE - IMDB CLONE" />,
+    icon: <IconMovie className="h-4 w-4 text-white" />,
+    details: "This project implements user authentication via NextAuth.js, allowing users to create watchlists with persistent storage. Features include real-time search functionality, custom movie/tv show collections, and responsive design for optimal viewing on all devices.",
+    technologies: ["Next.js", "Tailwind CSS", "NextAuth.js", "TMDB API"],
+    link: "https://watchwise-one.vercel.app/",
   },
   {
     title: "Online PingPong Game",
