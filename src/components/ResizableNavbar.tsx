@@ -180,7 +180,7 @@ const NavbarButton = ({
   variant?: "primary" | "secondary" | "dark" | "gradient";
 } & (React.ComponentPropsWithoutRef<"a"> | React.ComponentPropsWithoutRef<"button">)) => {
   const baseStyles =
-    "inline-block cursor-pointer rounded-md px-4 py-2 text-center text-sm font-bold transition duration-200 hover:-translate-y-0.5";
+    "inline-block cursor-pointer rounded-md px-4 py-2 text-center text-sm font-bold transition duration-200 hover:-translate-y-0.5 relative z-50 pointer-events-auto";
 
   const variantStyles = {
     primary:
@@ -227,7 +227,12 @@ export default function ResizableNavbar() {
             <NavbarLogo />
             <NavItems items={links} />
             <div className="ml-auto">
-              <NavbarButton onClick={(e: React.MouseEvent<HTMLButtonElement>) => smoothScroll(e, "contact")}>Contact Me</NavbarButton>
+              <NavbarButton 
+                as="button" 
+                onClick={(e: React.MouseEvent<HTMLButtonElement>) => smoothScroll(e, "contact")}
+              >
+                Contact Me
+              </NavbarButton>
             </div>
           </NavBody>
         </NavbarWrapper>
@@ -266,7 +271,7 @@ export default function ResizableNavbar() {
                 {l.name}
               </motion.a>
             ))}
-            <NavbarButton onClick={(e: React.MouseEvent<HTMLButtonElement>) => { setIsOpen(false); smoothScroll(e, "contact"); }}>
+            <NavbarButton as="button" onClick={(e: React.MouseEvent<HTMLButtonElement>) => { setIsOpen(false); smoothScroll(e, "contact"); }}>
               Contact Me
             </NavbarButton>
           </motion.div>

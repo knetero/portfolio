@@ -109,10 +109,7 @@ export default function Navbar() {
         <div className="hidden md:block">
           <Button 
             className="bg-white text-black hover:bg-gray-200 transition-colors duration-200 -motion-translate-x-in-100 motion-translate-y-in-75"
-            onClick={(e) => {
-              smoothScroll(e, "contact")
-              toggleMenu()
-            }}
+            onClick={(e) => smoothScroll(e, "contact")}
           >
             Contact Me
           </Button>
