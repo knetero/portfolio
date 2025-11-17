@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Message } from '@/types/chat';
 import { formatDistanceToNow } from 'date-fns';
+import ShinyText from '@/components/ShinyText';
 
 interface MessageListProps {
   messages: Message[];
@@ -161,23 +162,11 @@ export default function MessageList({ messages, isLoading }: MessageListProps) {
           </div>
           
           <div className="bg-muted px-4 py-3 rounded-lg rounded-bl-none shadow-sm">
-            <div className="flex space-x-2 py-1">
-              <motion.div 
-                className="w-2 h-2 bg-foreground/40 rounded-full"
-                animate={{ scale: [0.5, 1, 0.5], opacity: [0.5, 1, 0.5] }}
-                transition={{ repeat: Infinity, duration: 1.5, delay: 0 }}
-              />
-              <motion.div 
-                className="w-2 h-2 bg-foreground/40 rounded-full"
-                animate={{ scale: [0.5, 1, 0.5], opacity: [0.5, 1, 0.5] }}
-                transition={{ repeat: Infinity, duration: 1.5, delay: 0.2 }}
-              />
-              <motion.div 
-                className="w-2 h-2 bg-foreground/40 rounded-full"
-                animate={{ scale: [0.5, 1, 0.5], opacity: [0.5, 1, 0.5] }}
-                transition={{ repeat: Infinity, duration: 1.5, delay: 0.4 }}
-              />
-            </div>
+            <ShinyText 
+              text="Thinking..." 
+              speed={3}
+              className="text-base"
+            />
           </div>
         </motion.div>
       )}

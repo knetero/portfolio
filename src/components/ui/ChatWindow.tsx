@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import MessageList from './MessageList';
-import MessageInput from './MessageInput';
+import ChatInput from './ChatInput';
 import { useChat } from '@/context/ChatContext';
 
 interface ChatWindowProps {
@@ -155,7 +155,13 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
         }}
         onClick={handleChatFocus}
       >
-        <div className="flex items-center justify-between py-3 px-4 border-b border-border bg-muted">
+        <div 
+          className="flex items-center justify-between py-3 px-4 border-b border-border bg-muted cursor-pointer"
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
+        >
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -224,8 +230,8 @@ export default function ChatWindow({ onClose }: ChatWindowProps) {
           <div id="messages-end" ref={messagesEndRef} />
         </div>
 
-        <div className="p-3.5 border-t border-border bg-background">
-          <MessageInput onSendMessage={handleSendMessage} isLoading={isLoading} />
+        <div className="p-3 bg-background">
+          <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
         </div>
       </motion.div>
       

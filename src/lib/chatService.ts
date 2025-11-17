@@ -1,8 +1,15 @@
-import { OpenRouterMessage, OpenRouterRequestBody, OpenRouterResponse, Role } from '@/types/chat';
+import { OpenRouterMessage, Role } from '@/types/chat';
 import { createPortfolioSystemPrompt, PORTFOLIO_OWNER } from './portfolioContext';
+import { createOpenRouter } from '@openrouter/ai-sdk-provider';
+import { generateText } from 'ai';
 
-const API_URL = 'https://openrouter.ai/api/v1/chat/completions';
-const MODEL = 'deepseek/deepseek-r1:free';
+const MODEL = 'deepseek/deepseek-chat-v3.1:free';
+
+// Initialize OpenRouter provider
+const openrouter = createOpenRouter({
+    apiKey: process.env.NEXT_PUBLIC_OPENROUTER_API_KEY || '',
+    baseURL: 'https://openrouter.ai/api/v1',
+});
 
 // Detect attempts to impersonate the portfolio owner or modify portfolio information
 function detectSecurityThreats(message: string): boolean {
@@ -48,20 +55,6 @@ function getSecurityResponse(): string {
     return `I cannot modify the portfolio information. I am an AI assistant representing ${PORTFOLIO_OWNER.name}, and I can only provide information that is already in my context. If you need to make changes to the portfolio, please contact ${PORTFOLIO_OWNER.name} directly via the provided contact information.`;
 }
 
-// Check if the error is a rate limit error
-function isRateLimitError(response: Response, errorData: { error?: { message?: string }; message?: string }): boolean {
-    // Check HTTP status code (429 is "Too Many Requests")
-    if (response.status === 429) {
-        return true;
-    }
-
-    // Check error message content
-    const errorMessage = errorData?.error?.message || errorData?.message || '';
-    return errorMessage.toLowerCase().includes('rate limit') ||
-        errorMessage.toLowerCase().includes('too many requests') ||
-        errorMessage.toLowerCase().includes('quota exceeded');
-}
-
 export async function generateChatResponse(messages: OpenRouterMessage[], retryCount = 0): Promise<string> {
     try {
         // Check the latest user message for security threats
@@ -77,39 +70,31 @@ export async function generateChatResponse(messages: OpenRouterMessage[], retryC
             ...messages
         ];
 
-        const requestBody: OpenRouterRequestBody = {
-            model: MODEL,
+        // Use Vercel AI SDK to generate response
+        const result = await generateText({
+            model: openrouter.chat(MODEL),
             messages: messagesWithContext,
-        };
-
-        const response = await fetch(API_URL, {
-            method: 'POST',
             headers: {
-                'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPENROUTER_API_KEY}`,
-                'HTTP-Referer': process.env.NEXT_PUBLIC_SITE_URL || window.location.origin,
+                'HTTP-Referer': process.env.NEXT_PUBLIC_SITE_URL || (typeof window !== 'undefined' ? window.location.origin : ''),
                 'X-Title': process.env.NEXT_PUBLIC_SITE_NAME || 'Portfolio Chatbot',
-                'Content-Type': 'application/json'
             },
-            body: JSON.stringify(requestBody)
         });
 
-        if (!response.ok) {
-            const errorData = await response.json();
+        let content = result.text;
 
-            // Check specifically for rate limit errors
-            if (isRateLimitError(response, errorData)) {
-                throw new Error('RATE_LIMIT_EXCEEDED: API request limit reached. Please try again later.');
-            }
-
-            throw new Error(errorData.error?.message || 'Failed to generate response');
-        }
-
-        const data: OpenRouterResponse = await response.json();
-        const content = data.choices[0].message.content;
+        // Remove special tokens and artifacts from the response (optional, AI SDK usually handles this)
+        content = content
+            .replace(/<｜begin▁of▁sentence｜>/g, '')
+            .replace(/<｜end▁of▁sentence｜>/g, '')
+            .replace(/<｜[^｜]+｜>/g, '')
+            .replace(/<\|[^|]+\|>/g, '')
+            .replace(/\<think\>[\s\S]*?\<\/think\>/g, '')
+            .replace(/<｜.*?｜>/g, '')
+            .trim();
 
         // Check for empty response and retry if needed
         if (!content || content.trim() === '') {
-            if (retryCount < 2) { // Allow up to 2 retries (3 total attempts)
+            if (retryCount < 2) {
                 console.warn(`Received empty response from API (attempt ${retryCount + 1}), retrying...`);
                 return generateChatResponse(messages, retryCount + 1);
             } else {
@@ -120,9 +105,9 @@ export async function generateChatResponse(messages: OpenRouterMessage[], retryC
         return content;
     } catch (error) {
         // Check if this is a rate limit error
-        if (error instanceof Error && error.message.startsWith('RATE_LIMIT_EXCEEDED:')) {
+        if (error instanceof Error && error.message.toLowerCase().includes('rate limit')) {
             console.error('Rate limit exceeded:', error);
-            throw error; // Don't retry rate limit errors
+            throw new Error(`RATE_LIMIT_EXCEEDED: ${error.message}`);
         }
 
         // Retry on other errors if we haven't reached max retries

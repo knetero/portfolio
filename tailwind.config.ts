@@ -68,6 +68,7 @@ const config: Config = {
       animation: {
         aurora: "aurora 60s linear infinite",
         'slide-left': 'slide-left 15s linear infinite',
+        shine: 'shine 3s linear infinite',
       },
       keyframes: {
         aurora: {
@@ -81,6 +82,10 @@ const config: Config = {
         'slide-left': {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
+        },
+        shine: {
+          '0%': { 'background-position': '100%' },
+          '100%': { 'background-position': '-100%' },
         },
       },
     },

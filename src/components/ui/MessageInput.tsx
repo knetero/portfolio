@@ -1,7 +1,10 @@
 "use client";
 
-import { useState, useRef, KeyboardEvent } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { ArrowRightIcon } from '@radix-ui/react-icons';
+import { Textarea } from '@/components/ui/textarea';
+import { useAutoResizeTextarea } from '@/hooks/use-auto-resize-textarea';
+import { cn } from '@/lib/utils';
 
 interface MessageInputProps {
   onSendMessage: (message: string) => void;
@@ -9,116 +12,75 @@ interface MessageInputProps {
 }
 
 export default function MessageInput({ onSendMessage, isLoading }: MessageInputProps) {
-  const [message, setMessage] = useState('');
-  const [isFocused, setIsFocused] = useState(false);
-  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const [value, setValue] = useState('');
+  const { textareaRef, adjustHeight } = useAutoResizeTextarea({
+    minHeight: 56,
+    maxHeight: 200,
+  });
 
   const handleSend = () => {
-    if (message.trim() && !isLoading) {
-      onSendMessage(message);
-      setMessage('');
-      
-      // Reset textarea height
-      if (inputRef.current) {
-        inputRef.current.style.height = 'auto';
-      }
+    if (value.trim() && !isLoading) {
+      onSendMessage(value);
+      setValue('');
+      adjustHeight(true);
     }
   };
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSend();
     }
   };
 
-  // Handle focus events
-  const handleFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsFocused(true);
-  };
-
-  // Handle blur events
-  const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsFocused(false);
-  };
-
-  // Handle click events on the input container
-  const handleContainerClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    inputRef.current?.focus();
-  };
-
   return (
-    <div className="flex items-end gap-2">
-      <div 
-        className={`flex-1 bg-muted rounded-lg p-2.5 shadow-sm transition-all duration-200 ${
-          isFocused ? 'ring-2 ring-primary/30' : ''
-        }`}
-        onClick={handleContainerClick}
-      >
-        <textarea
-          ref={inputRef}
-          value={message}
-          onChange={(e) => {
-            e.stopPropagation();
-            setMessage(e.target.value);
-          }}
-          onKeyDown={handleKeyDown}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onMouseDown={(e) => e.stopPropagation()}
-          onTouchStart={(e) => e.stopPropagation()}
-          placeholder="Ask me anything..."
-          className="w-full resize-none bg-transparent focus:outline-none text-foreground min-h-[40px] max-h-[120px] placeholder:text-muted-foreground/70"
-          rows={1}
-          style={{
-            height: 'auto',
-            minHeight: '40px',
-            maxHeight: '120px'
-          }}
-          onInput={(e) => {
-            e.stopPropagation();
-            const target = e.target as HTMLTextAreaElement;
-            target.style.height = 'auto';
-            target.style.height = `${Math.min(target.scrollHeight, 120)}px`;
-          }}
-          disabled={isLoading}
-        />
-      </div>
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={(e) => {
-          e.stopPropagation();
-          handleSend();
-        }}
-        onMouseDown={(e) => e.stopPropagation()}
-        onTouchStart={(e) => e.stopPropagation()}
-        disabled={!message.trim() || isLoading}
-        className="h-11 w-11 rounded-full bg-primary text-primary-foreground disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md transition-all duration-200 relative"
-        aria-label="Send message"
-      >
-        <div className="absolute inset-0 flex items-center justify-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <line x1="22" y1="2" x2="11" y2="13"></line>
-            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-          </svg>
+    <div className="bg-black/5 dark:bg-white/5 rounded-xl">
+      <div className="relative flex flex-col">
+        <div className="overflow-y-auto" style={{ maxHeight: '200px' }}>
+          <Textarea
+            value={value}
+            placeholder="Ask me anything about Abdellah..."
+            className={cn(
+              'w-full rounded-xl rounded-b-none px-4 py-3 bg-black/5 dark:bg-white/5 border-none dark:text-white placeholder:text-black/70 dark:placeholder:text-white/70 resize-none focus-visible:ring-0 focus-visible:ring-offset-0',
+              'min-h-[56px]'
+            )}
+            ref={textareaRef}
+            onKeyDown={handleKeyDown}
+            onChange={(e) => {
+              setValue(e.target.value);
+              adjustHeight();
+            }}
+            disabled={isLoading}
+          />
         </div>
-      </motion.button>
+
+        <div className="h-12 bg-black/5 dark:bg-white/5 rounded-b-xl flex items-center">
+          <div className="absolute left-3 right-3 bottom-2.5 flex items-center justify-between w-[calc(100%-24px)]">
+            <div className="flex items-center gap-2">
+              <div className="text-xs text-black/50 dark:text-white/50">
+                {isLoading ? 'Thinking...' : 'Press Enter to send'}
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={handleSend}
+              className={cn(
+                'rounded-lg p-2 bg-black/5 dark:bg-white/5',
+                'hover:bg-black/10 dark:hover:bg-white/10 focus-visible:ring-1 focus-visible:ring-offset-0 focus-visible:ring-blue-500 transition-colors'
+              )}
+              aria-label="Send message"
+              disabled={!value.trim() || isLoading}
+            >
+              <ArrowRightIcon
+                className={cn(
+                  'w-4 h-4 dark:text-white transition-opacity duration-200',
+                  value.trim() && !isLoading ? 'opacity-100' : 'opacity-30'
+                )}
+              />
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 } 
