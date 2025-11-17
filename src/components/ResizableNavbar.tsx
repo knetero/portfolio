@@ -10,10 +10,9 @@ import {
   useMotionValueEvent,
 } from "motion/react";
 import Image from "next/image";
+import SlideTextButton from "./kokonutui/slide-text-button";
 
-/* --------------------------------------------------------------------------
- * Helper: smooth scroll to page sections or open resume in new tab
- * ------------------------------------------------------------------------*/
+
 const smoothScroll = (
   e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   target: string,
@@ -165,43 +164,6 @@ const NavbarLogo = () => (
   </a>
 );
 
-const NavbarButton = ({
-  href,
-  as: Tag = "a",
-  children,
-  className,
-  variant = "primary",
-  ...props
-}: {
-  href?: string;
-  as?: React.ElementType;
-  children: React.ReactNode;
-  className?: string;
-  variant?: "primary" | "secondary" | "dark" | "gradient";
-} & (React.ComponentPropsWithoutRef<"a"> | React.ComponentPropsWithoutRef<"button">)) => {
-  const baseStyles =
-    "inline-block cursor-pointer rounded-md px-4 py-2 text-center text-sm font-bold transition duration-200 hover:-translate-y-0.5 relative z-50 pointer-events-auto";
-
-  const variantStyles = {
-    primary:
-      "bg-white text-black shadow-[0_0_24px_rgba(34,42,53,0.06),_0_1px_1px_rgba(0,0,0,0.05),_0_0_0_1px_rgba(34,42,53,0.04),_0_0_4px_rgba(34,42,53,0.08),_0_16px_68px_rgba(47,48,55,0.05),_0_1px_0_rgba(255,255,255,0.1)_inset]",
-    secondary: "bg-transparent text-white border border-white",
-    dark: "bg-black text-white shadow-[0_0_24px_rgba(34,42,53,0.06),_0_1px_1px_rgba(0,0,0,0.05),_0_0_0_1px_rgba(34,42,53,0.04),_0_0_4px_rgba(34,42,53,0.08),_0_16px_68px_rgba(47,48,55,0.05),_0_1px_0_rgba(255,255,255,0.1)_inset]",
-    gradient:
-      "bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
-  } as const;
-
-  return (
-    <Tag
-      href={href || undefined}
-      className={cn(baseStyles, variantStyles[variant], className)}
-      {...props}
-    >
-      {children}
-    </Tag>
-  );
-};
-
 /* --------------------------------------------------------------------------
  * Public component composing everything together
  * ------------------------------------------------------------------------*/
@@ -226,13 +188,14 @@ export default function ResizableNavbar() {
           <NavBody>
             <NavbarLogo />
             <NavItems items={links} />
-            <div className="ml-auto">
-              <NavbarButton 
-                as="button" 
-                onClick={(e: React.MouseEvent<HTMLButtonElement>) => smoothScroll(e, "contact")}
-              >
-                Contact Me
-              </NavbarButton>
+            <div className="relative z-50 ml-auto flex-shrink-0">
+              <SlideTextButton
+                text="Contact Me"
+                hoverText="Let's Talk"
+                href="#contact"
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => smoothScroll(e, "contact")}
+                className="h-[36px] min-w-0 w-auto px-4 py-2 bg-white text-black hover:bg-white/90 dark:bg-white dark:text-black dark:hover:bg-white/90 text-sm font-bold shadow-[0_0_24px_rgba(34,42,53,0.06),_0_1px_1px_rgba(0,0,0,0.05),_0_0_0_1px_rgba(34,42,53,0.04),_0_0_4px_rgba(34,42,53,0.08),_0_16px_68px_rgba(47,48,55,0.05),_0_1px_0_rgba(255,255,255,0.1)_inset] md:min-w-0"
+              />
             </div>
           </NavBody>
         </NavbarWrapper>
@@ -271,9 +234,13 @@ export default function ResizableNavbar() {
                 {l.name}
               </motion.a>
             ))}
-            <NavbarButton as="button" onClick={(e: React.MouseEvent<HTMLButtonElement>) => { setIsOpen(false); smoothScroll(e, "contact"); }}>
-              Contact Me
-            </NavbarButton>
+            <SlideTextButton
+              text="Contact Me"
+              hoverText="Let's Talk"
+              href="#contact"
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => { setIsOpen(false); smoothScroll(e, "contact"); }}
+              className="h-[36px] min-w-0 px-4 py-2 bg-white text-black hover:bg-white/90 dark:bg-white dark:text-black dark:hover:bg-white/90 text-sm font-bold shadow-[0_0_24px_rgba(34,42,53,0.06),_0_1px_1px_rgba(0,0,0,0.05),_0_0_0_1px_rgba(34,42,53,0.04),_0_0_4px_rgba(34,42,53,0.08),_0_16px_68px_rgba(47,48,55,0.05),_0_1px_0_rgba(255,255,255,0.1)_inset]"
+            />
           </motion.div>
         )}
       </AnimatePresence>

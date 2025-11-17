@@ -6,6 +6,7 @@ import ResizableNavbar from "@/components/ResizableNavbar";
 import SmoothScroll from "@/components/SmoothScroll";
 import { ChatProvider } from "@/context/ChatContext";
 import ClientLayout from "@/components/ClientLayout";
+import ClickSpark from "@/components/ClickSpark";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -83,6 +84,7 @@ export default function RootLayout({
     <html lang="en" className="custom-scrollbar overflow-x-hidden">
       <head>
         {/* Preconnect to speed up font loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* DNS prefetch for any external resources */}
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
@@ -91,16 +93,26 @@ export default function RootLayout({
         className={`${inter.className} ${geistSans.variable} ${geistMono.variable} antialiased bg-dot-white/[0.2] relative overflow-x-hidden overflow-y-hidden`}
       >
         <div className="absolute inset-0 bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
-        <SmoothScroll>
-          <ResizableNavbar />
-          <div className="pt-16 relative">
-            <ChatProvider>
-              <ClientLayout>
-                {children}
-              </ClientLayout>
-            </ChatProvider>
-          </div>
-        </SmoothScroll>
+        <ClickSpark
+          sparkColor="#ffffff"
+          sparkSize={12}
+          sparkRadius={20}
+          sparkCount={8}
+          duration={500}
+          easing="ease-out"
+          extraScale={1.2}
+        >
+          <SmoothScroll>
+            <ResizableNavbar />
+            <div className="pt-16 relative">
+              <ChatProvider>
+                <ClientLayout>
+                  {children}
+                </ClientLayout>
+              </ChatProvider>
+            </div>
+          </SmoothScroll>
+        </ClickSpark>
       </body>
     </html>
   );
