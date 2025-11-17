@@ -283,11 +283,11 @@ const items = [
     title: "WATCHWISE - IMDB CLONE",
     category: "Full Stack",
     description: "A responsive, modern UI IMDb clone using Next.js and Tailwind CSS, fetching meta-data from TMDB API for trending movies/TV shows and user search results.",
-    header: <ImageContainer src="/Images/watchWise.jpg" alt="WATCHWISE - IMDB CLONE" />,
+    header: <ImageContainer src="/Images/watchWise.png" alt="WATCHWISE - IMDB CLONE" />,
     icon: <IconMovie className="h-4 w-4 text-white" />,
     details: "This project implements user authentication via NextAuth.js, allowing users to create watchlists with persistent storage. Features include real-time search functionality, custom movie/tv show collections, and responsive design for optimal viewing on all devices.",
     technologies: ["Next.js", "Tailwind CSS", "NextAuth.js", "TMDB API"],
-    link: "https://watchwise-one.vercel.app/",
+    link: "https://watchwiseapp.live",
   },
   {
     title: "Online PingPong Game",

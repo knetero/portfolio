@@ -4,6 +4,7 @@ import { motion} from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { GlowingEffect } from "./ui/glowing-effect"
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card"
 
 
 const smoothScroll = (e, target) => {
@@ -68,12 +69,24 @@ export default function About() {
               </p>
               <p className="text-neutral-200">
                 Recently, I developed{' '}
-                <Link href="#projects" onClick={(e) => smoothScroll(e, "projects")} className="relative text-white font-medium group">
-                  ft_transcendence
-                  <motion.span 
-                    className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white group-hover:w-full transition-all duration-300 ease-out"
-                  />
-                </Link>,{' '}
+                <HoverCard openDelay={100} closeDelay={100}>
+                  <HoverCardTrigger asChild>
+                    <Link href="#projects" onClick={(e) => smoothScroll(e, "projects")} className="relative text-white font-medium group cursor-pointer">
+                      ft_transcendence
+                      <motion.span 
+                        className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white group-hover:w-full transition-all duration-300 ease-out"
+                      />
+                    </Link>
+                  </HoverCardTrigger>
+                  <HoverCardContent className="w-80 bg-neutral-900/95 backdrop-blur-md border-white/10">
+                    <div className="space-y-2">
+                      <p className="text-sm text-neutral-300 leading-relaxed">
+                        I took a 1972 game and gave it a 2024 glow-up. Real-time multiplayer, 
+                        chat, and enough features to make Atari jealous.
+                      </p>
+                    </div>
+                  </HoverCardContent>
+                </HoverCard>,{' '}
                 a real-time multiplayer ping pong platform built with Next.js and React. 
                 The project features live gameplay, social networking capabilities, and an 
                 integrated chat system, demonstrating my ability to create interactive, 

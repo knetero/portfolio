@@ -5,7 +5,7 @@ import { Spotlight } from "@/components/ui/spotlight-new";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { usePathname } from 'next/navigation'
-import Image from "next/image";
+import SlideTextButton from "@/components/kokonutui/slide-text-button";
 
 
 
@@ -68,7 +68,7 @@ export function Home() {
         </motion.p>
         
         <motion.div 
-          className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mt-8 md:mt-10 motion-preset-oscillate motion-duration-2000 "
+          className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mt-8 md:mt-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
@@ -78,22 +78,14 @@ export function Home() {
             ease: "easeInOut"
           }}
         >
-          <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ 
-              delay: 0.7,
-              duration: 0.5,
-              ease: "easeInOut"
-            }}
-            className=" flex flex-row items-center gap-2 justify-center bg-white text-black w-full sm:w-auto
-            h-12 px-6 text-base font-medium cursor-pointer hover:bg-gray-200 transition-colors duration-200 rounded-full shadow shadow-white/30 shadow-lg"
+          <SlideTextButton
+            text="Explore my work"
+            hoverText="View Projects →"
+            href="#projects"
+            variant="default"
+            className="w-full sm:w-auto bg-white text-black hover:bg-white/90 dark:bg-white dark:text-black dark:hover:bg-white/90 md:min-w-0"
             onClick={(e) => smoothScroll(e, "projects")}
-          >
-            Explore my work
-            <Image src="/Images/arrow.svg" alt="arrow" width={8} height={8} priority />
-          </motion.button>
+          />
         </motion.div>
       </div>
     </BackgroundLines>

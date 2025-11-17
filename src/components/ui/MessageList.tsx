@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { Message } from '@/types/chat';
 import { formatDistanceToNow } from 'date-fns';
-import ShinyText from '@/components/ShinyText';
+import AITextLoading from '@/components/kokonutui/ai-text-loading';
 
 interface MessageListProps {
   messages: Message[];
@@ -161,12 +161,20 @@ export default function MessageList({ messages, isLoading }: MessageListProps) {
             AI
           </div>
           
-          <div className="bg-muted px-4 py-3 rounded-lg rounded-bl-none shadow-sm">
-            <ShinyText 
-              text="Thinking..." 
-              speed={3}
-              className="text-base"
-            />
+          <div className="bg-muted px-3 py-2 rounded-lg rounded-bl-none shadow-sm w-fit">
+            <div className="[&>div]:!p-0 [&>div>div]:!p-0 [&>div>div]:!px-0 [&>div>div]:!py-0">
+              <AITextLoading 
+                texts={[
+                  "Thinking...",
+                  "Processing...",
+                  "Analyzing...",
+                  "Crafting response...",
+                  "Almost there...",
+                ]}
+                interval={1200}
+                className="!text-sm"
+              />
+            </div>
           </div>
         </motion.div>
       )}
