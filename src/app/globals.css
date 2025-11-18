@@ -2,32 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
 
 @layer utilities {
   .animation-pause {
     animation-play-state: paused;
   }
+
   .scrollbar-hide {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
   }
+
   .scrollbar-hide::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    display: none;
+    /* Chrome, Safari, Opera */
   }
-  
+
   /* Performance optimizations */
   .gpu-accelerated {
     transform: translateZ(0);
     will-change: transform;
     backface-visibility: hidden;
   }
-  
+
   .optimize-animation {
     will-change: transform, opacity;
   }
-  
+
   /* Reduce CLS - Content Layout Shift */
-  img, video {
+  img,
+  video {
     max-width: 100%;
     height: auto;
   }

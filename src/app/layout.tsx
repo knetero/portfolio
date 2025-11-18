@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ResizableNavbar from "@/components/ResizableNavbar";
-import SmoothScroll from "@/components/SmoothScroll";
 import { ChatProvider } from "@/context/ChatContext";
 import ClientLayout from "@/components/ClientLayout";
 import ClickSpark from "@/components/ClickSpark";
@@ -102,16 +101,14 @@ export default function RootLayout({
           easing="ease-out"
           extraScale={1.2}
         >
-          <SmoothScroll>
-            <ResizableNavbar />
-            <div className="pt-16 relative">
-              <ChatProvider>
-                <ClientLayout>
-                  {children}
-                </ClientLayout>
-              </ChatProvider>
-            </div>
-          </SmoothScroll>
+          <ResizableNavbar />
+          <div className="pt-16 relative">
+            <ChatProvider>
+              <ClientLayout>
+                {children}
+              </ClientLayout>
+            </ChatProvider>
+          </div>
         </ClickSpark>
       </body>
     </html>
