@@ -151,7 +151,7 @@ export default function About() {
                 {/* Image container with overflow hidden */}
                 <div className="absolute inset-0 rounded-3xl overflow-hidden border border-white/10">
                   <Image
-                    src="/Images/MYPIC.png"
+                    src="/Images/MYPIC.jpeg"
                     alt="Abdellah - Web Developer"
                     width={480}
                     height={480}
