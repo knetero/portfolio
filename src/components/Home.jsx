@@ -33,7 +33,7 @@ export function Home() {
     }
   }, [pathname])
 
-  
+
 
   return (
     <BackgroundLines className="flex flex-col items-center justify-center w-full min-h-screen p-4 md:p-8">
@@ -43,8 +43,8 @@ export function Home() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          transition={{ 
-            delay: 0.2, 
+          transition={{
+            delay: 0.2,
             duration: 0.5,
             ease: "easeInOut"
           }}
@@ -52,27 +52,27 @@ export function Home() {
         >
           Crafting User <br className="hidden sm:inline " /> Experiences for the Web.
         </motion.h2>
-        
+
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          transition={{ 
+          transition={{
             delay: 0.4,
             duration: 0.5,
             ease: "easeInOut"
           }}
           className="max-w-xl mx-auto  text-base sm:text-lg text-neutral-300 dark:text-neutral-400 mt-4 md:mt-6"
         >
-          I architect immersive digital experiences, weaving cutting-edge code with elegant design to create interfaces that captivate and perform.
+          I architect immersive digital experiences, combining powerful backend systems with elegant frontend design to create applications that captivate and perform.
         </motion.p>
-        
-        <motion.div 
+
+        <motion.div
           className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mt-8 md:mt-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          transition={{ 
+          transition={{
             delay: 0.6,
             duration: 0.5,
             ease: "easeInOut"

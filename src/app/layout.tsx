@@ -21,36 +21,36 @@ const geistMono = localFont({
   display: 'swap',
   preload: true,
 });
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin"],
   display: 'swap',
   preload: true,
 });
 
 export const metadata: Metadata = {
-  title: "Abdellah - Frontend Developer Portfolio",
-  description: "Personal Front-end Developer Portfolio showcasing modern web experiences with Next.js, React, and cutting-edge technologies.",
-  keywords: ["Frontend Developer", "Web Developer", "React", "Next.js", "Portfolio", "UI/UX", "JavaScript"],
+  title: "Abdellah - Full-Stack Developer Portfolio",
+  description: "Personal Full-Stack Developer Portfolio showcasing modern web experiences with Next.js, React, Node.js, MongoDB, and cutting-edge technologies.",
+  keywords: ["Full-Stack Developer", "Web Developer", "React", "Next.js", "Node.js", "MongoDB", "Portfolio", "UI/UX", "JavaScript"],
   authors: [{ name: "Abdellah" }],
   creator: "Abdellah",
   metadataBase: new URL('https://portfolio-knetero.vercel.app'),
   openGraph: {
     type: 'website',
-    title: "Abdellah - Frontend Developer Portfolio",
-    description: "Personal Front-end Developer Portfolio showcasing modern web experiences",
+    title: "Abdellah - Full-Stack Developer Portfolio",
+    description: "Personal Full-Stack Developer Portfolio showcasing modern web experiences",
     images: [
       {
         url: "/picLink.png",
         width: 1200,
         height: 630,
-        alt: "Abdellah - Frontend Developer",
+        alt: "Abdellah - Full-Stack Developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Abdellah - Frontend Developer Portfolio",
-    description: "Personal Front-end Developer Portfolio showcasing modern web experiences",
+    title: "Abdellah - Full-Stack Developer Portfolio",
+    description: "Personal Full-Stack Developer Portfolio showcasing modern web experiences",
     images: ["/picLink.png"],
   },
   robots: {

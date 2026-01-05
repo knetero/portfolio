@@ -2,17 +2,17 @@
 
 export const PORTFOLIO_OWNER = {
     name: "Abdellah",
-    title: "Frontend Developer",
+    title: "Full-Stack Developer",
     location: "Morocco - Khouribga",
     email: "azabdellah044@gmail.com",
     linkedin: "https://www.linkedin.com/in/azabdellah",
     github: "https://github.com/knetero",
     about: `
-    I'm a passionate Frontend Developer focused on building modern web experiences. 
-    I'm dedicated to creating clean, efficient applications using Next.js and React.
-    What started as curiosity about how websites work has grown into a deep interest 
-    in frontend development and user experience. I architect immersive digital experiences, 
-    weaving cutting-edge code with elegant design to create interfaces that captivate and perform.
+    I'm a passionate Full-Stack Developer specializing in modern web technologies. 
+    With strong programming fundamentals, I build intuitive, high-performance web applications 
+    using clean architecture, responsive design, and seamless user experiences. Proficient in 
+    creating scalable interfaces and robust backend systems with a focus on usability, 
+    accessibility, real-time functionality, and maintainable code.
   `,
     skills: [
         {
@@ -23,10 +23,16 @@ export const PORTFOLIO_OWNER = {
             ]
         },
         {
+            category: "Backend",
+            technologies: [
+                "Node.js", "MongoDB", "Mongoose", "Socket.IO", "NextAuth.js", "REST APIs"
+            ]
+        },
+        {
             category: "Tools & Others",
             technologies: [
                 "Git", "Figma", "Performance Optimization", "Accessibility",
-                "Responsive Design", "WebSocket", "HTML5 Canvas"
+                "Responsive Design", "WebSocket", "HTML5 Canvas", "Nodemailer"
             ]
         },
         {
@@ -46,8 +52,8 @@ export const PORTFOLIO_OWNER = {
         },
         {
             title: "WATCHWISE - IMDB CLONE",
-            description: "A responsive, modern UI IMDb clone using Next.js and Tailwind CSS, fetching meta-data from TMDB API for trending movies/TV shows and user search results.",
-            technologies: ["Next.js", "Tailwind CSS", "NextAuth.js", "TMDB API"],
+            description: "A full-stack IMDb clone built with Next.js, featuring real-time social functionality, comprehensive user management, and TMDB API integration.",
+            technologies: ["Next.js", "Tailwind CSS", "Node.js", "MongoDB", "Socket.IO", "NextAuth.js", "TMDB API"],
             github: "",
             live: "https://watchwiseapp.live/"
         },
@@ -103,14 +109,14 @@ export const PORTFOLIO_OWNER = {
     ],
     experience: [
         {
-            position: "Frontend Developer",
+            position: "Full-Stack Developer",
             company: "Freelance",
             period: "2024 - 2025",
             responsibilities: [
-                "Develop responsive web applications using React and Next.js",
+                "Develop full-stack web applications using React, Next.js, and Node.js",
+                "Build backend systems with MongoDB integration and real-time features using Socket.IO",
                 "Implement UI/UX designs using Tailwind CSS and Framer Motion",
-                "Build interactive user interfaces and improve performance",
-                "Create accessible and responsive web experiences"
+                "Create accessible and responsive web experiences with robust authentication"
             ]
         }
     ],

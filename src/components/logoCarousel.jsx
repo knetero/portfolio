@@ -15,6 +15,9 @@ const LogoCarousel = () => {
     { name: "Figma", id: 10, img: (props) => <Image src="/Images/figma.svg" alt="Figma" width={80} height={80} {...props} /> },
     { name: "Angular", id: 11, img: (props) => <Image src="/Images/angular.svg" alt="Angular" width={80} height={80} {...props} /> },
     { name: "Vue.js", id: 12, img: (props) => <Image src="/Images/vuejs.svg" alt="Vue.js" width={80} height={80} {...props} /> },
+    { name: "Node.js", id: 13, img: (props) => <Image src="/Images/Nodejs.svg" alt="Node.js" width={100} height={100} {...props} /> },
+    { name: "MongoDB", id: 14, img: (props) => <Image src="/Images/mongodb.svg" alt="MongoDB" width={100} height={100} {...props} /> },
+    { name: "PostgreSQL", id: 15, img: (props) => <Image src="/Images/postgresql.svg" alt="PostgreSQL" width={100} height={100} {...props} /> },
   ];
 
   return (
@@ -26,7 +29,7 @@ const LogoCarousel = () => {
         <p className="bg-clip-text text-transparent bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-center pb-20 text-neutral-300 dark:text-neutral-400 font-light text-lg sm:text-xl md:text-xl lg:text-2xl">
           Modern frameworks and tools driving <br /> innovative web solutions.
         </p>
-        
+
         <div className="flex justify-center">
           <LogoCarouselComponent logos={logos} columnCount={6} />
         </div>

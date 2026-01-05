@@ -1,6 +1,6 @@
 'use client'
 
-import { motion} from "framer-motion"
+import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { GlowingEffect } from "./ui/glowing-effect"
@@ -27,15 +27,15 @@ export default function About() {
   const technologies = [
     { name: "Next.js", id: 6 },
     { name: "React", id: 3 },
-    { name: "Angular", id: 4 },
-    { name: "Vue.js", id: 5 },
+    { name: "Node.js", id: 7 },
+    { name: "MongoDB", id: 8 },
     { name: "JavaScript (ES6+)", id: 1 },
     { name: "TailwindCSS", id: 2 },
   ]
 
   return (
     <section className="w-full min-h-screen text-neutral-300 py-20 px-4 md:px-8 flex items-center justify-center">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -55,17 +55,17 @@ export default function About() {
               </h2>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}
               className="space-y-5 text-lg leading-relaxed font-light"
             >
               <p className="text-neutral-100">
-                Hey! I'm <span className="font-medium text-white">Abdellah</span>, a developer focused on building modern web experiences. 
-                I'm passionate about creating clean, efficient applications using Next.js 
-                and React. What started as curiosity about how websites work has grown into 
-                a deep interest in frontend development and user experience.
+                Hey! I'm <span className="font-medium text-white">Abdellah</span>, a Full-Stack Developer focused on building modern web experiences.
+                I'm passionate about creating clean, efficient applications using Next.js, React,
+                and Node.js with MongoDB. What started as curiosity about how websites work has grown into
+                a deep interest in full-stack development and creating seamless user experiences.
               </p>
               <p className="text-neutral-200">
                 Recently, I developed{' '}
@@ -73,7 +73,7 @@ export default function About() {
                   <HoverCardTrigger asChild>
                     <Link href="#projects" onClick={(e) => smoothScroll(e, "projects")} className="relative text-white font-medium group cursor-pointer">
                       ft_transcendence
-                      <motion.span 
+                      <motion.span
                         className="absolute left-0 -bottom-1 w-0 h-[2px] bg-white group-hover:w-full transition-all duration-300 ease-out"
                       />
                     </Link>
@@ -81,18 +81,18 @@ export default function About() {
                   <HoverCardContent className="w-80 bg-neutral-900/95 backdrop-blur-md border-white/10">
                     <div className="space-y-2">
                       <p className="text-sm text-neutral-300 leading-relaxed">
-                        I took a 1972 game and gave it a 2024 glow-up. Real-time multiplayer, 
+                        I took a 1972 game and gave it a 2024 glow-up. Real-time multiplayer,
                         chat, and enough features to make Atari jealous.
                       </p>
                     </div>
                   </HoverCardContent>
                 </HoverCard>,{' '}
-                a real-time multiplayer ping pong platform built with Next.js and React. 
-                The project features live gameplay, social networking capabilities, and an 
-                integrated chat system, demonstrating my ability to create interactive, 
-                frontend web applications. I'm currently focused on building accessible, 
-                engaging user experiences and exploring new ways to push the boundaries of 
-                web technology.
+                a real-time multiplayer ping pong platform built with Next.js and React.
+                The project features live gameplay, social networking capabilities, and an
+                integrated chat system, demonstrating my ability to create interactive,
+                full-stack web applications. I'm currently focused on building accessible,
+                engaging user experiences with robust backend systems and exploring new ways
+                to push the boundaries of web technology.
               </p>
             </motion.div>
 
@@ -111,12 +111,12 @@ export default function About() {
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ 
+                    transition={{
                       duration: 0.3,
                       delay: index * 0.1,
                       type: "spring",
                       stiffness: 260,
-                      damping: 20 
+                      damping: 20
                     }}
                   >
                     <span className="text-white text-lg">▹</span>
@@ -127,7 +127,7 @@ export default function About() {
             </motion.div>
           </div>
 
-          <motion.div 
+          <motion.div
             initial={{ x: 20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.5 }}
@@ -147,7 +147,7 @@ export default function About() {
                   borderWidth={2}
                   movementDuration={0.3}
                 />
-                
+
                 {/* Image container with overflow hidden */}
                 <div className="absolute inset-0 rounded-3xl overflow-hidden border border-white/10">
                   <Image
@@ -160,7 +160,7 @@ export default function About() {
                     sizes="(max-width: 768px) 100vw, 480px"
                     className="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-105"
                   />
-                  
+
                   {/* Subtle overlay on hover */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 </div>
