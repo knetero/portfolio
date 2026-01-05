@@ -27,9 +27,9 @@ export function Projects() {
         Featured Projects
       </h2>
       <p className="bg-clip-text text-transparent text-center w-[95%] bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white text-lg sm:text-2xl tracking-tight">
-        Explore a curated selection of projects <br className="bg-clip-text text-transparent bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white"/> That showcase the power of creativity and innovation.
+        Explore a curated selection of projects <br className="bg-clip-text text-transparent bg-gradient-to-b from-neutral-500 to-neutral-100 dark:to-white" /> That showcase the power of creativity and innovation.
       </p>
-      
+
       <BentoGrid className="max-w-5xl sm:mx-auto mx-[20px]">
         {items.map((item, i) => (
           <BentoGridItem
@@ -171,7 +171,7 @@ const ProjectModal = ({ item }) => {
                     <p className="text-sm sm:text-base text-neutral-300 leading-relaxed">{item.overview}</p>
                   </div>
                 )}
-                
+
                 {/* Key Achievements */}
                 {item.highlights && (
                   <div>
@@ -282,11 +282,17 @@ const items = [
   {
     title: "WATCHWISE - IMDB CLONE",
     category: "Full Stack",
-    description: "A responsive, modern UI IMDb clone using Next.js and Tailwind CSS, fetching meta-data from TMDB API for trending movies/TV shows and user search results.",
+    description: "A full-stack IMDb clone built with Next.js, featuring real-time social functionality, comprehensive user management, and TMDB API integration for trending movies/TV shows.",
     header: <ImageContainer src="/Images/watchWise.png" alt="WATCHWISE - IMDB CLONE" />,
     icon: <IconMovie className="h-4 w-4 text-white" />,
-    details: "This project implements user authentication via NextAuth.js, allowing users to create watchlists with persistent storage. Features include real-time search functionality, custom movie/tv show collections, and responsive design for optimal viewing on all devices.",
-    technologies: ["Next.js", "Tailwind CSS", "NextAuth.js", "TMDB API"],
+    overview: "A full-stack IMDb clone built with Next.js, featuring real-time social functionality and comprehensive user management. The application fetches media data from TMDB API for trending movies/TV shows and provides robust search capabilities.",
+    highlights: [
+      "Implemented custom Node.js backend with MongoDB integration for persistent data storage",
+      "Built user authentication system using NextAuth.js with MongoDB Adapter",
+      "Created watchlist management features and user profiles with responsive modern UI",
+      "Integrated email functionality using Nodemailer and Resend for user notifications"
+    ],
+    technologies: ["Next.js", "Tailwind CSS", "Radix UI", "Framer Motion", "Node.js", "MongoDB", "Mongoose", "NextAuth.js", "bcrypt", "TMDB API", "Nodemailer", "Resend"],
     link: "https://watchwiseapp.live",
   },
   {
@@ -296,7 +302,7 @@ const items = [
     header: <ImageContainer src="/Images/pong2.png" alt="Ping Pong Game" />,
     icon: <IconPingPong className="h-4 w-4 text-white" />,
     details: "This project is a full-stack web application that allows users to play Pong online in real-time. It features user authentication, matchmaking, live gameplay, and a chat system for players to communicate.",
-    technologies: ["Next.js", "React.js", "JavaScript" , "WebSocket", "HTML5 Canvas", "Tailwind CSS", "Database Management"],
+    technologies: ["Next.js", "React.js", "JavaScript", "WebSocket", "HTML5 Canvas", "Tailwind CSS", "Database Management"],
     link: "https://github.com/knetero/PingPong",
   },
   {
@@ -339,7 +345,7 @@ const items = [
     technologies: ["C", "Raycasting", "Computer Graphics", "Game Development"],
     link: "https://github.com/knetero/cub3d",
   },
- 
+
   {
     title: "Inception",
     category: "DevOps",
@@ -350,5 +356,5 @@ const items = [
     technologies: ["Docker", "Docker Compose", "NGINX", "MariaDB", "WordPress", "Linux"],
     link: "https://github.com/knetero/inception",
   },
-  
+
 ]
